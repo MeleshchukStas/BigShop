@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header_meni_left">
+            <h2 class="text_logo">JORMI</h2>
+            <ul class="ListOfClothes">
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="shop.html">Магазин</a></li>
+                <li><a href="#">Контакти</a></li>
+                <li><a href="#">Коментарі</a></li>
+            </ul>
+        </div>
+        <div class="header_meni_right">
+            <input type="search" id="poisk">
+            <button type="button" id="lupa"></button>
+            <div id="karzina"><span id="cartItemCount">0</span></div>
+        </div>
+        <div id="open_window">
+            <div class="txt">
+                <h2>Кошик</h2>
+                <button id="closeWindow" type="button"></button>
+            </div>
+            <div id="cartItems" class="cart-item-list"></div>
+        </div>
+    </header>
+
+    <div id="productInfo">
+        <div>
+            <h2 class="NameT"></h2>
+            <img class="imgT" src="" alt="">
+        </div>
+        <div class="productText">
+            <p class="SizesT"></p>
+            <p class="cupT"></p>
+            <p class="materialT"></p>
+            <p class="ColorT"></p>
+            <p class="brashapeT"></p>
+            <p class="strapsT"></p>
+            <p class="styleT"></p>
+            <p class="claspT"></p>
+            <p class="countryT"></p>
+            <p class="compositionT"></p>
+            <p class="printT"></p>
+            <p class="decorationT"></p>
+            <p class="RatingT"></p>
+            <p class="PriceT"></p>
+            <button id="pushKarzina"><img src="img/carzinalitle.png" alt="karzina"><p>Купити</p></button>
+        </div>
+    </div>
+    
+    <script type="module" src="style.js"></script>
+    <script type="module" src="style2.js"></script>
+</body>
+
+</html>

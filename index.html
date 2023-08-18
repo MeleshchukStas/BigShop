@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="header_left">
+                <div class="header_meni_left">
+                    <h2 class="text_logo">JORMI</h2>
+                    <ul class="ListOfClothes">
+                        <li><a href="#">Головна</a></li>
+                        <li><a href="shop.html">Магазин</a></li>
+                        <li><a href="#">Контакти</a></li>
+                        <li><a href="#">Коментарі</a></li>
+                    </ul>
+                </div>
+                <div class="header_middle">
+                    <div class="header_text">
+                        <h1>Великий<br>вибір одягу<br>нової колекції</h1>
+                        <p>Ми ручаемося за якість одягу на будь який смак</p>
+                        <a href="#">НОВА КОЛЕКЦІЯ</a>
+                    </div>
+                    <div class="box_header_midle_img">
+                        <img src="img/night.jpg" alt="logo2">
+                    </div>
+                </div>
+                <div id="box">
+                    <div>
+                        <div class="osortiment">
+                            <img src="" alt="foto">
+                            <p>Кофты</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="osortiment">
+                            <img src="" alt="foto">
+                            <p>Боди</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="osortiment">
+                            <img src="" alt="foto">
+                            <p>Штаны</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="osortiment">
+                            <img src="" alt="foto">
+                            <p>Сумки</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href=""></a>
+            <div class="header_right">
+                <div class="header_meni_right">
+                    <input type="search" id="poisk">
+                    <button type="button" id="lupa"></button>
+                    <div id="karzina"><span id="cartItemCount">0</span></div>
+                </div>
+
+                <div id="box_foto" class="box_foto">
+                    <img src="img/night.jpg" alt="foto">
+                    <div class="text">
+                        <p>Доступны кольора</p>
+                        <div id="color">
+                            <div id="color1"></div>
+                            <div id="color2"></div>
+                            <div id="color3"></div>
+                            <div id="color4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <main>
+        <div id="open_window">
+            <div class="txt">
+                <h2>Кошик</h2>
+                <button id="closeWindow" type="button"></button>
+            </div>
+            <ul id="cartItems"></ul>
+        </div>
+        <div class="container">
+            <div class="aboutUs">
+                <h2>Про нас</h2>
+                <div class="aboutUs_text_box">
+                    <div class="aboutUs_img">
+                        <img src="img/night.jpg" alt="qwe">
+                    </div>
+                    <div class="aboutUs_txt">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius eos maiores qui soluta!
+                            Molestiae magni in fuga accusantium perspiciatis temporibus excepturi libero. Ipsum quaerat
+                            temporibus nostrum sed ab nobis corrupti, vero quas accusamus sequi officiis doloremque
+                            sapiente autem voluptatum? Corporis velit vitae aliquid libero. Pariatur aliquam odit iste?
+                            Magnam ipsa, accusamus dolorem perferendis, saepe et pariatur aperiam neque accusantium
+                            incidunt harum necessitatibus blanditiis corrupti? Inventore, aut dolore. Totam,
+                            perspiciatis autem ratione quo ea nemo qui mollitia corrupti non, quos excepturi eaque
+                            veritatis incidunt debitis dolorem soluta recusandae blanditiis itaque ipsum optio voluptate
+                            magnam! Repellendus, dolorum cum atque cumque, libero repellat architecto asperiores
+                            pariatur neque exercitationem explicabo blanditiis obcaecati veniam eius molestias officiis.
+                            Molestiae impedit perferendis vel veritatis nulla voluptatem quas accusamus consectetur
+                            nobis.</p>
+                        <div class="spisok">
+                            <div>Lorem ipsum dolor sit amet consectetur.</div>
+                            <div>Lorem ipsum dolor sit amet consectetur.</div>
+                            <div>Lorem ipsum dolor sit amet consectetur.</div>
+                            <div>Lorem ipsum dolor sit amet consectetur.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="box_collection">
+                <div class="elem1"></div>
+                <div class="elem2"></div>
+                <div class="collection2023">
+                    <p>2023</p>
+                    <p>колекція</p>
+                </div>
+                <div class="elem3"></div>
+                <div class="elem4"></div>
+                <div class="excluziv">
+                    <p>Ексклюзивна колекція літнього одягу</p>
+                </div>
+                <div class="elem5"></div>
+            </div>
+        </div>
+        <div class="box_slaider">
+            <h2>Распродажа</h2>
+            <div id="sclick_slider" class="slider">
+                <!-- Slides will be dynamically added here -->
+              </div>
+        </div>
+        <div class="foto">
+            <div class="container">
+                <div class="foto_text">
+                    <p>Встигни придбати одяг на будь-який смак за знижкою 40%</p>
+                    <div>
+                        <a href="#">МАГАЗИН</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="foto_box">
+            <div class="foto_left">
+                <h2>Лляна сукня - тренд літа 2023</h2>
+                <p>21 червня 2023</p>
+                <img src="img/night.jpg" alt="foto">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto voluptatibus quisquam consequatur,
+                    reprehenderit nesciunt veritatis!</p>
+                <a href="#">ДЕТАЛЬНіШЕ</a>
+            </div>
+            <div class="foto_right">
+                <h2>Наймодніші купальники цього літа</h2>
+                <p>10 червня 2023</p>
+                <img src="img/night.jpg" alt="foto">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto voluptatibus quisquam consequatur,
+                    reprehenderit nesciunt veritatis!</p>
+                <a href="#">ДЕТАЛЬНіШЕ</a>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer_boxs">
+                <div class="footer_box1">
+                    <h3>Наши соцсети</h3>
+                    <ul>
+                        <li><a href="#">Инстаграмм</a></li>
+                        <li><a href="#">фейсбук</a></li>
+                    </ul>
+                </div>
+                <div class="footer_box2">
+                    <ul>
+                        <li>г. Покровск</li>
+                        <li>тел. +380961111111</li>
+                        <li>тел. +380682222222</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <img src="" alt="">
+    </footer>
+    
+    <script type="module" src="tovar.js"></script>
+    
+    <script type="module" src="style.js"></script>
+    <script type="module" src="style2.js"></script>
+    
+</body>
+
+</html>

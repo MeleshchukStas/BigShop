@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="header_meni_left">
+      <h2 class="text_logo">JORMI</h2>
+      <ul class="ListOfClothes">
+        <li><a href="index.html">Головна</a></li>
+        <li><a href="shop.html">Магазин</a></li>
+        <li><a href="#">Контакти</a></li>
+        <li><a href="#">Коментарі</a></li>
+      </ul>
+    </div>
+    <div class="header_meni_right">
+      <input type="search" id="poisk">
+      <button type="button" id="lupa"></button>
+      <div id="karzina"><span id="cartItemCount">0</span></div>
+    </div>
+    <div id="open_window">
+      <div class="txt">
+        <h2>Кошик</h2>
+        <button id="closeWindow" type="button"></button>
+      </div>
+      <div id="cartItems" class="cart-item-list"></div>
+    </div>
+  </header>
+  <ul id="cartItems"></ul>
+  </div>
+  <div id="product-container"></div> <!-- Добавляем контейнер для продуктов -->
+  <script type="module">
+    import asortiment from './tovar.js';
+
+    const container = document.querySelector('#product-container');
+
+    asortiment.bra.forEach(product => {
+      const productElement = document.createElement('div');
+      productElement.classList.add('product');
+
+      const imgElement = document.createElement('img');
+      imgElement.src = product.img;
+
+      const nameElement = document.createElement('h2');
+      nameElement.textContent = product.name;
+      imgElement.alt = product.name;
+      // Создайте другие элементы для отображения остальных данных продукта
+      // Например:
+      const priceElement = document.createElement('p');
+      priceElement.textContent = `Ціна: $${product.price}`;
+
+      productElement.appendChild(imgElement);
+      productElement.appendChild(nameElement);
+      productElement.appendChild(priceElement);
+
+      container.appendChild(productElement);
+    });
+
+
+  </script>
+  <script type="module" src="style.js"></script>
+  <script type="module" src="tovar.js"></script>
+</body>
+
+</html>
