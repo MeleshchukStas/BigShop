@@ -22,17 +22,17 @@
                 <div class="header_meni_left">
                     <h2 class="text_logo">JORMI</h2>
                     <ul class="ListOfClothes">
-                        <li><a href="index.html">Головна</a></li>
-                        <li><a href="shop.html">Магазин</a></li>
-                        <li><a href="#">Контакти</a></li>
-                        <li><a href="#">Коментарі</a></li>
+                        <li><a href="index.html" data-translate="home">Головна</a></li>
+                        <li><a href="shop.html" data-translate="shop">Магазин</a></li>
+                        <li><a href="#" data-translate="Contacts">Контакти</a></li>
+                        <li><a href="#" data-translate="Comments">Коментарі</a></li>
                     </ul>
                 </div>
                 <div class="header_middle">
                     <div class="header_text">
-                        <h1>Великий<br>вибір одягу<br>нової колекції</h1>
-                        <p>Ми ручаемося за якість одягу на будь який смак</p>
-                        <a href="#">НОВА КОЛЕКЦІЯ</a>
+                        <h1 data-translate="header_text_h1">Великий вибір одягу нової колекції</h1>
+                        <p data-translate="header_text_p">Ми ручаемося за якість одягу на будь який смак</p>
+                        <a data-translate="header_text_button" href="#">НОВА КОЛЕКЦІЯ</a>
                     </div>
                     <div class="box_header_midle_img">
                         <img src="img/night.jpg" alt="logo2">
@@ -73,6 +73,12 @@
                     <div id="karzina"><span id="cartItemCount">0</span></div>
                 </div>
 
+                <select id="languageSelector">
+                    <option value="lang-ua.json">Українська</option>
+                    <option value="lang-en.json">English</option>
+                    <!-- Добавьте другие языки по аналогии -->
+                </select>
+
                 <div id="box_foto" class="box_foto">
                     <img src="img/night.jpg" alt="foto">
                     <div class="text">
@@ -94,32 +100,22 @@
                 <button id="closeWindow" type="button"></button>
             </div>
             <ul id="cartItems"></ul>
+            <a id="zakaz_tovara" href="poshta/poshta.html">Оформить заказ</a>
         </div>
         <div class="container">
             <div class="aboutUs">
-                <h2>Про нас</h2>
+                <h2 data-translate="aboutUs_h2">Про нас</h2>
                 <div class="aboutUs_text_box">
                     <div class="aboutUs_img">
                         <img src="img/night.jpg" alt="qwe">
                     </div>
                     <div class="aboutUs_txt">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius eos maiores qui soluta!
-                            Molestiae magni in fuga accusantium perspiciatis temporibus excepturi libero. Ipsum quaerat
-                            temporibus nostrum sed ab nobis corrupti, vero quas accusamus sequi officiis doloremque
-                            sapiente autem voluptatum? Corporis velit vitae aliquid libero. Pariatur aliquam odit iste?
-                            Magnam ipsa, accusamus dolorem perferendis, saepe et pariatur aperiam neque accusantium
-                            incidunt harum necessitatibus blanditiis corrupti? Inventore, aut dolore. Totam,
-                            perspiciatis autem ratione quo ea nemo qui mollitia corrupti non, quos excepturi eaque
-                            veritatis incidunt debitis dolorem soluta recusandae blanditiis itaque ipsum optio voluptate
-                            magnam! Repellendus, dolorum cum atque cumque, libero repellat architecto asperiores
-                            pariatur neque exercitationem explicabo blanditiis obcaecati veniam eius molestias officiis.
-                            Molestiae impedit perferendis vel veritatis nulla voluptatem quas accusamus consectetur
-                            nobis.</p>
+                        <p data-translate="aboutUs_txt_p">Здравствуйте, за этим действительно больно следить. Его старейшины освобождены! Великие неприятности в бегстве обвинителей приходится ожидать в самые ясные времена. Может ли он искать его в наше время, но развращенное нами, но которого мы обвиняем в том, что он следует обязанностям и страданиям мудрых, но удовольствиям? Тело хочет чего-то свободного от жизни. Спорим, он некоторых ненавидит? Она, мы обвиняем ее в терпении великой боли, будет ли она часто открывать дверь и не развратится лестью этих нужд обвинителей? Изобретатель, или боль. Но посмотрите всю причину, по которой никто из развращённых мягкостью, спасаемых и истинных не впадает в долги, боль отказа от лести, потому и сам выбор есть великое удовольствие! Оттолкнутый, с болями и страданиями, свободный отталкивает архитектора к самому грубому, и я не объясню обучения, ослепленного лестью, я прощу его хлопоты с обязанностями. Мешает нам переносить боль или истина, что никакое удовольствие, в котором мы обвиняем, не последует за нами.</p>
                         <div class="spisok">
-                            <div>Lorem ipsum dolor sit amet consectetur.</div>
-                            <div>Lorem ipsum dolor sit amet consectetur.</div>
-                            <div>Lorem ipsum dolor sit amet consectetur.</div>
-                            <div>Lorem ipsum dolor sit amet consectetur.</div>
+                            <div data-translate="spisok_li">Интернет за самой болью нужно следить.</div>
+                            <div data-translate="spisok_li">Интернет за самой болью нужно следить.</div>
+                            <div data-translate="spisok_li">Интернет за самой болью нужно следить.</div>
+                            <div data-translate="spisok_li">Интернет за самой болью нужно следить.</div>
                         </div>
                     </div>
                 </div>
@@ -131,48 +127,44 @@
                 <div class="elem2"></div>
                 <div class="collection2023">
                     <p>2023</p>
-                    <p>колекція</p>
+                    <p data-translate="collection2023-p">колекція</p>
                 </div>
                 <div class="elem3"></div>
                 <div class="elem4"></div>
                 <div class="excluziv">
-                    <p>Ексклюзивна колекція літнього одягу</p>
+                    <p data-translate="excluziv_p">Ексклюзивна колекція літнього одягу</p>
                 </div>
                 <div class="elem5"></div>
             </div>
         </div>
         <div class="box_slaider">
-            <h2>Распродажа</h2>
-            <div id="sclick_slider" class="slider">
-                <!-- Slides will be dynamically added here -->
-              </div>
+            <h2 data-translate="box_slaider_h2">Самые популярные товары</h2>
+            <div id="sclick_slider" class="slider"></div>
         </div>
         <div class="foto">
             <div class="container">
                 <div class="foto_text">
-                    <p>Встигни придбати одяг на будь-який смак за знижкою 40%</p>
+                    <p data-translate="foto_text_p">Встигни придбати одяг на будь-який смак за знижкою 40%</p>
                     <div>
-                        <a href="#">МАГАЗИН</a>
+                        <a data-translate="foto_text_a" href="shop.html">МАГАЗИН</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="foto_box">
             <div class="foto_left">
-                <h2>Лляна сукня - тренд літа 2023</h2>
-                <p>21 червня 2023</p>
+                <h2 data-translate="foto_left_h2">Лляна сукня - тренд осені 2023</h2>
+                <p data-translate="foto_left_p1">21 червня 2023</p>
                 <img src="img/night.jpg" alt="foto">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto voluptatibus quisquam consequatur,
-                    reprehenderit nesciunt veritatis!</p>
-                <a href="#">ДЕТАЛЬНіШЕ</a>
+                <p data-translate="foto_left_p2">Встигни придбати одяг на будь-який смак за знижкою 40%</p>
+                <a data-translate="foto_left_button1" href="#">ДЕТАЛЬНіШЕ1</a>
             </div>
             <div class="foto_right">
-                <h2>Наймодніші купальники цього літа</h2>
-                <p>10 червня 2023</p>
+                <h2 data-translate="foto_right_h2">Наймодніші купальники цієї осені</h2>
+                <p data-translate="foto_right_p2">10 червня 2023</p>
                 <img src="img/night.jpg" alt="foto">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto voluptatibus quisquam consequatur,
-                    reprehenderit nesciunt veritatis!</p>
-                <a href="#">ДЕТАЛЬНіШЕ</a>
+                <p data-translate="foto_right_p3">Встигни придбати одяг на будь-який смак за знижкою 40%</p>
+                <a data-translate="foto_right_button2" href="#">ДЕТАЛЬНіШЕ2</a>
             </div>
         </div>
     </main>
@@ -180,22 +172,21 @@
         <div class="container">
             <div class="footer_boxs">
                 <div class="footer_box1">
-                    <h3>Наши соцсети</h3>
+                    <h3 data-translate="footer_box1_h3">Наши соцсети</h3>
                     <ul>
-                        <li><a href="#">Инстаграмм</a></li>
-                        <li><a href="#">фейсбук</a></li>
+                        <li data-translate="footer_box1_ul_li1"><a href="#">Инстаграмм</a></li>
+                        <li data-translate="footer_box1_ul_li2"><a href="#">Фейсбук</a></li>
                     </ul>
                 </div>
                 <div class="footer_box2">
                     <ul>
-                        <li>г. Покровск</li>
-                        <li>тел. +380961111111</li>
-                        <li>тел. +380682222222</li>
+                        <li data-translate="footer_box2_ul_li1">г. Покровск</li>
+                        <li data-translate="footer_box2_ul_li2">тел. +380961111111</li>
+                        <li data-translate="footer_box2_ul_li3">тел. +380682222222</li>
                     </ul>
                 </div>
             </div>
         </div>
-        <img src="" alt="">
     </footer>
     
     <script type="module" src="tovar.js"></script>

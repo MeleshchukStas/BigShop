@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <form action="telegram.php" method="POST" id="orderForm">
+        <select id="areaSelect" name="getAre">
+            <option value="">Выберите область</option>
+        </select>
+        <select id="citySelect" name="getCity">
+            <option value="">Выберите город</option>
+        </select>
+        <select id="warehouseSelect" name="getWarehouse">
+            <option value="">Выберите відділення або поштомат</option>
+        </select>
+        <fieldset id="orderCards"></fieldset>
+        <input type="hidden" name="getSpisok" id="qwer">
+
+        <button id="your_button" type="submit">Зробити замовлення</button>
+
+    </form>
+
+    <script type="module" src="../style2.js"></script>
+    <script type="module">
+
+        let api_key = "397247055895a5cc6e4ce89f2bfb7000";
+        let api_url = "https://api.novaposhta.ua/v2.0/json/";
+
+        let areaSelect = document.getElementById("areaSelect");
+        let citySelect = document.getElementById("citySelect");
+        let warehouseSelect = document.getElementById("warehouseSelect");
+
+        function makePostRequest(method, params, callback) {
+            let requestData = {
+                apiKey: api_key,
+                modelName: "Address",
+                calledMethod: method,
+                methodProperties: params,
+            };
+
+            let request = new XMLHttpRequest();
+            request.open("POST", api_url, true);
+            request.setRequestHeader("Content-Type", "application/json");
+
+            request.onload = function () {
+                if (request.status === 200) {
+                    let response = JSON.parse(request.responseText);
+                    callback(response.data);
+                } else {
+                    console.error("Ошибка при выполнении запроса:", request.statusText);
+                }
+            };
+
+            request.send(JSON.stringify(requestData));
+        }
+
+        function createOption(element, value, text) {
+            let option = document.createElement("option");
+            option.value = value;
+            option.text = text;
+            element.appendChild(option);
+        }
+
+        function loadAreas() {
+            makePostRequest("getAreas", {}, areas => {
+                areas.forEach(area => {
+                    createOption(areaSelect, area.Ref, area.Description);
+                });
+
+                areaSelect.addEventListener("change", () => {
+                    loadCities(areaSelect.value);
+                });
+            });
+        }
+
+        function loadCities(areaRef) {
+            citySelect.innerHTML = '<option value="">Выберите город</option>';
+            warehouseSelect.innerHTML = '<option value="">Выберите відділення або поштомат</option>';
+
+            let cityParams = {
+                AreaRef: areaRef,
+            };
+
+            makePostRequest("getCities", cityParams, cities => {
+                cities.forEach(city => {
+                    createOption(citySelect, city.Ref, city.Description);
+                });
+
+                citySelect.addEventListener("change", () => {
+                    loadWarehouses(citySelect.value);
+                });
+            });
+        }
+
+        function loadWarehouses(cityRef) {
+            warehouseSelect.innerHTML = '<option value="">Выберите відділення або поштомат</option>';
+
+            let warehouseParams = {
+                CityRef: cityRef,
+            };
+
+            makePostRequest("getWarehouses", warehouseParams, warehouses => {
+                warehouses.forEach(warehouse => {
+                    createOption(warehouseSelect, warehouse.Ref, warehouse.Description);
+                });
+            });
+        }
+
+        loadAreas()
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            let orderForm = document.getElementById("orderCards");
+            let qwer = document.getElementById("qwer");
+
+
+            let asdf = "";
+
+            savedCartItems.forEach((item, index) => {
+                let card = document.createElement("fieldset");
+                card.classList.add("product-card");
+
+                let itemName = document.createElement("h3");
+                itemName.textContent = item.name;
+
+                let itemImage = document.createElement("img");
+                itemImage.src = item.img;
+                itemImage.alt = item.name;
+
+                let itemSize = document.createElement("p");
+                itemSize.textContent = ` Розмір: ${item.selectedSizes} `;
+
+                let itemPrice = document.createElement("p");
+                itemPrice.textContent = ` Ціна: ${item.price} грн. `;
+
+                card.appendChild(itemName);
+                card.appendChild(itemImage);
+                card.appendChild(itemSize);
+                card.appendChild(itemPrice);
+
+                orderForm.appendChild(card);
+
+                asdf += itemName.textContent + itemSize.textContent + itemPrice.textContent + '\n';
+
+            });
+
+            console.log(asdf);
+            qwer.value = asdf;
+        });
+
+
+    </script>
+</body>
+
+</html>

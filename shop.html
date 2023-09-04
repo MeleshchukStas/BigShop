@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ua">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -33,46 +33,125 @@
     </div>
     <div id="open_window">
       <div class="txt">
-        <h2>Кошик</h2>
-        <button id="closeWindow" type="button"></button>
+          <h2>Кошик</h2>
+          <button id="closeWindow" type="button"></button>
       </div>
-      <div id="cartItems" class="cart-item-list"></div>
-    </div>
-  </header>
-  <ul id="cartItems"></ul>
+      <ul id="cartItems"></ul>
+      <a id="zakaz_tovara" href="poshta/poshta.html">Оформить заказ</a>
   </div>
-  <div id="product-container"></div> <!-- Добавляем контейнер для продуктов -->
+  </header>
+  <div class="container_product">
+    <div id="sort-select">
+      <!-- <label>
+        <input id="zxc" type="radio" name="sort" value="name"> Сортировка по имени
+      </label> -->
+      <div class="price_filter">
+        <h4>Сортировка по цене</h4>
+        <label>
+          <input id="qwe" type="radio" name="sort" value="price_plus">Сортировка по цене
+        </label>
+        <label>
+          <input id="ewq" type="radio" name="sort" value="price_minus">Сортировка по цене
+        </label>
+      </div>
+      <div class="country_filter">
+        <h4>Сортировка по странам</h4>
+        <label for="">
+          <input type="checkbox" name="country" value="USA"> USA
+        </label>
+        <label for="">
+          <input type="checkbox" name="country" value="Китай"> Китай
+        </label>
+        <label for="">
+          <input type="checkbox" name="country" value="Italy"> Италия
+        </label>
+        <label for="">
+          <input type="checkbox" name="country" value="France"> Франция
+        </label>
+        <label for="">
+          <input type="checkbox" name="country" value="Germany"> Германия
+        </label>
+      </div>
+    </div>
+    <div id="product-container">
+
+    </div>
+  </div>
+
   <script type="module">
     import asortiment from './tovar.js';
 
-    const container = document.querySelector('#product-container');
+    console.log(asortiment);
 
-    asortiment.bra.forEach(product => {
-      const productElement = document.createElement('div');
-      productElement.classList.add('product');
+    $(document).ready(function () {
+      let container = $('#product-container');
+      let sortRadios = $('input[name="sort"]');
+      let countryFilter = $('input[name="country"]');
 
-      const imgElement = document.createElement('img');
-      imgElement.src = product.img;
+      let sortingFunction;
+      let selectedCountry = '';
 
-      const nameElement = document.createElement('h2');
-      nameElement.textContent = product.name;
-      imgElement.alt = product.name;
-      // Создайте другие элементы для отображения остальных данных продукта
-      // Например:
-      const priceElement = document.createElement('p');
-      priceElement.textContent = `Ціна: $${product.price}`;
+      function updateProductsDisplay(products) {
+        container.empty();
 
-      productElement.appendChild(imgElement);
-      productElement.appendChild(nameElement);
-      productElement.appendChild(priceElement);
+        products.forEach(function (item) {
+          let productLink = $('<a href="index2.html?item=' + encodeURIComponent(item.name) + '" class="product-link"></a>');
 
-      container.appendChild(productElement);
+          let productElement = $('<div class="product"></div>');
+          productElement.append('<img src="' + item.img + '" alt="' + item.name + '">');
+          productElement.append('<h2>' + item.name + '</h2>');
+          productElement.append('<p>Ціна: $' + item.price + '</p>');
+
+          productLink.append(productElement);
+          container.append(productLink);
+        });
+      }
+
+      let allProducts = [...asortiment.bra, ...asortiment.underpants];
+      updateProductsDisplay(allProducts);
+
+      //underpants
+
+      sortRadios.on('change', updateSorting);
+      countryFilter.on('change', updateSorting);
+
+      function updateSorting() {
+        let sortBy = sortRadios.filter(':checked').val();
+        selectedCountry = countryFilter.filter(':checked').map(function () {
+          return this.value;
+        }).get(); // Получаем массив выбранных стран
+
+        if (sortBy === 'price_plus') {
+          sortingFunction = sortByPriceAscending;
+        } else if (sortBy === 'price_minus') {
+          sortingFunction = sortByPriceDescending;
+        }
+
+        let filteredProducts = [...asortiment.bra, ...asortiment.underpants].filter(function (item) {
+          if (selectedCountry.length === 0) {
+            return true; // Показываем все товары, если не выбрано стран
+          }
+          return selectedCountry.includes(item.country);
+        });
+
+        filteredProducts.sort(sortingFunction);
+        updateProductsDisplay(filteredProducts);
+      }
+
+      function sortByPriceAscending(a, b) {
+        return a.price - b.price;
+      }
+
+      function sortByPriceDescending(a, b) {
+        return b.price - a.price;
+      }
     });
-
-
   </script>
-  <script type="module" src="style.js"></script>
+
+
   <script type="module" src="tovar.js"></script>
+  <script type="module" src="style.js"></script>
+  <script type="module" src="style2.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 let asortiment = {
-    "bra": [ 
+    "bra": [
         {
             "name": "Glamorous Lace",
             "img": "img/night.jpg",
@@ -17,8 +17,8 @@ let asortiment = {
             "decorating": "Embellished",
             "price": 200,
             "rating": 5,
-        },  
-        {   
+        },
+        {
             "name": "Linga Dore",
             "img": "img/night.jpg",
             "size": ["70B", "70C", "70D", "75A", "75B", "75C", "75D", "80A", "80B"],
@@ -34,7 +34,7 @@ let asortiment = {
             "print": "Однотонний",
             "decorating": "З мереживом",
             "price": 150,
-            "rating": 5,
+            "rating": 4.5,
         },
         {
             "name": "Sporty Chic",
@@ -52,7 +52,7 @@ let asortiment = {
             "print": "Solid",
             "decorating": "None",
             "price": 120,
-            "rating": 5,
+            "rating": 4.5,
         },
         {
             "name": "Vintage Romance",
@@ -88,7 +88,7 @@ let asortiment = {
             "print": "Solid",
             "decorating": "None",
             "price": 135,
-            "rating":5,
+            "rating": 4,
         },
         {
             "img": "img/night.jpg",
@@ -396,6 +396,38 @@ let asortiment = {
             "price": 185,
             "rating": 4,
         }
+    ],
+
+    "underpants": [
+        {
+            "img": "img/photo.jpg",
+            "name": "Basic Comfort",
+            "size": ["S", "M", "L", "XL"],
+            "material": ["Cotton", "Spandex"],
+            "color": "White",
+            "style": "Comfortable",
+            "country": "Germany",
+            "composition": ["90% cotton", "10% spandex"],
+            "print": "Solid",
+            "decorating": "None",
+            "price": 50,
+            "rating": 5
+        },
+        {
+            "img": "img/photo.jpg",
+            "name": "Lace Elegance",
+            "size": ["S", "M", "L"],
+            "material": ["Polyester", "Spandex"],
+            "color": "Black",
+            "style": "Elegant",
+            "country": "Italy",
+            "composition": ["85% polyester", "15% spandex"],
+            "print": "Lace",
+            "decorating": "Embellished",
+            "price": 60,
+            "rating": 5
+        },
     ]
 };
 export default asortiment;
+

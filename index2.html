@@ -32,13 +32,14 @@
                 <h2>Кошик</h2>
                 <button id="closeWindow" type="button"></button>
             </div>
-            <div id="cartItems" class="cart-item-list"></div>
+            <ul id="cartItems"></ul>
+            <a id="zakaz_tovara" href="poshta/poshta.html">Оформить заказ</a>
         </div>
     </header>
 
     <div id="productInfo">
         <div>
-            <h2 class="NameT"></h2>
+            <h2 class="nameT"></h2>
             <img class="imgT" src="" alt="">
         </div>
         <div class="productText">
@@ -56,12 +57,14 @@
             <p class="decorationT"></p>
             <p class="RatingT"></p>
             <p class="PriceT"></p>
-            <button id="pushKarzina"><img src="img/carzinalitle.png" alt="karzina"><p>Купити</p></button>
+            <button id="pushKarzina"><img src="img/carzinalitle.png" alt="karzina"><p>Добавити у кошик</p></button>
         </div>
     </div>
+    <script type="module" src="tovar.js"></script>
     
     <script type="module" src="style.js"></script>
     <script type="module" src="style2.js"></script>
+    
 </body>
 
 </html>
