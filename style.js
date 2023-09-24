@@ -1,102 +1,196 @@
-export default asortiment;
+// Получаем элемент #cartItemCount
+let cartItemCountElement = document.getElementById("cartItemCount");
+
+// Получаем значение из localStorage (если оно есть) и устанавливаем его в элемент #cartItemCount
+let cartItemCount = parseInt(localStorage.getItem("cartItemCount")) || 0;
+cartItemCountElement.textContent = cartItemCount.toString();
+
+let cartItem = document.getElementById("cartItemCount")
+
+let mobileMeni = document.querySelector('.mobileMeni');
+let burgerMenu = document.getElementById('burgerMenu');
+let closeButton = document.getElementById('closeButton');
+
+burgerMenu.addEventListener('click', () => {
+  mobileMeni.classList.add('active');
+});
+
+closeButton.addEventListener('click', () => {
+  mobileMeni.classList.remove('active');
+});
+
+// Получаем данные из localStorage или инициализируем пустую корзину и общую сумму
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let totalAmount = parseFloat(localStorage.getItem("totalAmount")) || 0;
+
+let cartItemCountQ = parseInt(localStorage.getItem("cartItemCount")) || 0;
+
+// Функция для отображения данных о корзине
+function displayCartData() {
+  // Находим элемент корзины на странице
+  let cartItemsElement = document.getElementById("cartItems");
+
+  // Очищаем содержимое корзины перед обновлением
+  cartItemsElement.innerHTML = "";
+
+  // Проходим по каждому элементу в корзине и создаем соответствующие элементы для отображения
+  for (let cartItem of cart) {
+    let cartItemElement = document.createElement("div");
+    cartItemElement.className = "imemsP";
+
+    let itemsBox = document.createElement("div");
+    itemsBox.className = "itemsBox";
+
+    // Создаем элементы для отображения информации о товаре (например, имя и цена)
+    let itemImgElement = document.createElement("img");
+    itemImgElement.src = cartItem.image;
+    cartItemElement.appendChild(itemImgElement);
+
+    let itemNameElement = document.createElement("h3");
+    itemNameElement.textContent = cartItem.name;
+    cartItemElement.appendChild(itemNameElement);
+
+    let itemsSize = document.createElement("p");
+    itemsSize.textContent = `Размеры: ${cartItem.sizes.join(', ')}`;
+    cartItemElement.appendChild(itemsSize);
+
+    let itemsColor = document.createElement("p");
+    itemsColor.textContent = `Цвета: ${cartItem.colors.join(', ')}`;
+    cartItemElement.appendChild(itemsColor);
 
 
-let openWindow = document.getElementById('open_window');
-karzina.onclick = function () {
-    if (openWindow.style.display === "none") {
-        openWindow.style.display = "block";
-    } else {
-        openWindow.style.display = "none";
-    }
-};
+    let itemPriceElement = document.createElement("p");
+    itemPriceElement.textContent = `Цена: ${cartItem.price} грн.`;
+    cartItemElement.appendChild(itemPriceElement);
 
-closeWindow.onclick = function () {
-    if (openWindow.style.display === "block") {
-        openWindow.style.display = "none";
-    } else {
-        openWindow.style.display = "block";
-    }
-};
+    let count = 1;
+    let itemsBoxs = document.createElement("div");
+    itemsBoxs.className = "itemsBox";
+    let countBox = document.createElement("div");
+    countBox.className = "countBox";
 
-import asortiment from './tovar.js';
+    let increment = document.createElement("button");
+    increment.id = "increment";
+    increment.className = "counter-button";
+    increment.innerText = "+";
 
-$(document).ready(function () {
-    let sliderContainer = $('#sclick_slider');
-    let itemsWithRating5 = [...asortiment.bra, ...asortiment.underpants].filter(item => item.rating === 5);
+    let decrement = document.createElement("button");
+    decrement.id = "decrement";
+    decrement.className = "counter-button";
+    decrement.innerText = "-";
 
-    let savedCartItemCount = parseInt(localStorage.getItem("cartItemCount")) || 0;
-    let cartItemCount = document.getElementById("cartItemCount");
-    cartItemCount.innerHTML = savedCartItemCount;
+    let countElement = document.createElement("div");
+    countElement.innerText = "1";
+    countElement.id = "count";
 
-    // Iterate through filtered items and create slider slides
-    itemsWithRating5.forEach(item => {
-        let slide = $(`<a href="index2.html?item=${encodeURIComponent(item.name)}" class="slider-slide"></a>`);
-
-        let itemContainer = $('<div class="item"></div>');
-        itemContainer.append(`<img src="${item.img}" alt="${item.name}">`);
-        itemContainer.append(`<h3>${item.name}</h3>`);
-        itemContainer.append(`<p>${item.price} USD</p>`);
-
-        slide.append(itemContainer);
-        sliderContainer.append(slide);
+    increment.addEventListener('click', () => {
+      count++;
+      countElement.textContent = count;
+      totalAmount += parseFloat(cartItem.price);
+      updateTotalAmount(totalAmount);
     });
 
-    // Initialize the slider
-    sliderContainer.slick({
-        arrows: true,
-        slidesToShow: 3,
-        slidesToScroll: 1
+    decrement.addEventListener('click', () => {
+      if (count > 0) {
+        count--;
+        countElement.textContent = count;
+        totalAmount -= parseFloat(cartItem.price);
+        updateTotalAmount(totalAmount);
+      }
     });
+
+    // Создаем кнопку для удаления товара из корзины
+    let removeButton = document.createElement("button");
+    removeButton.className = "deleteButton";
+    removeButton.addEventListener("click", () => {
+      // Находим индекс товара в корзине
+      const index = cart.findIndex((item) => item.name === cartItem.name);
+
+      if (index !== -1) {
+        cart.splice(index, 1);
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        cartItemCount--
+        cartItemCountElement.textContent = cartItemCount.toString();
+
+        localStorage.setItem("cartItemCount", cartItemCount.toString());
+
+        displayCartData();
+
+        totalAmount -= cartItem.price;
+
+        updateTotalAmount(totalAmount);
+      }
+    });
+
+
+    cartItemsElement.appendChild(itemsBox);
+    itemsBox.appendChild(cartItemElement);
+    itemsBox.appendChild(countBox);
+    countBox.appendChild(increment);
+    countBox.appendChild(countElement);
+    countBox.appendChild(decrement);
+    countBox.appendChild(removeButton);
+  }
+
+  updateTotalAmount(totalAmount);
+}
+
+function updateTotalAmount(total) {
+  let totalAmountElement = document.getElementById("totalAmount");
+  totalAmountElement.textContent = `Общая сумма: ${total.toFixed(2)} грн.`;
+
+  localStorage.setItem("totalAmount", total.toString());
+}
+
+// Вызываем функцию для отображения данных о корзине при загрузке страницы
+document.addEventListener("DOMContentLoaded", () => {
+  displayCartData();
 });
 
 
-document.getElementById('languageSelector').addEventListener('change', function () {
-    const selectedLanguage = this.value;
-    fetch(selectedLanguage)
-        .then(response => response.json())
-        .then(data => {
-            // Замена текста на странице
-            document.querySelector('.header_left li:nth-child(1) a').textContent = data.home;
-            document.querySelector('.header_left li:nth-child(2) a').textContent = data.shop;
-            document.querySelector('.header_left li:nth-child(3) a').textContent = data.contacts;
-            document.querySelector('.header_left li:nth-child(4) a').textContent = data.comments;
-            document.querySelector('.header_text h1').textContent = data.header_text_h1;
-            document.querySelector('.header_text p').textContent = data.header_text_p;
-            document.querySelector('.header_text a').textContent = data.header_text_button;
-            document.querySelector('.aboutUs h2').textContent = data.aboutUs_h2;
-            document.querySelector('.aboutUs_txt p').textContent = data.aboutUs_txt_p;
-            document.querySelector('.spisok div:nth-child(1)').textContent = data.spisok_li;
-            document.querySelector('.spisok div:nth-child(2)').textContent = data.spisok_li;
-            document.querySelector('.spisok div:nth-child(3)').textContent = data.spisok_li;
-            document.querySelector('.spisok div:nth-child(4)').textContent = data.spisok_li;
-            document.querySelector('.collection2023 p:nth-child(2)').textContent = data.collection2023_p;
-            document.querySelector('.excluziv p').textContent = data.excluziv_p;
-            document.querySelector('.box_slaider h2').textContent = data.box_slaider_h2;
-            document.querySelector('.foto_text p').textContent = data.foto_text_p;
-            document.querySelector('.foto_text a').textContent = data.foto_text_a;
 
-            document.querySelector('.foto_left h2').textContent = data.foto_left_h2;
-            document.querySelector('.foto_left p:nth-child(2)').textContent = data.foto_left_p1;
-            document.querySelector('.foto_left p:nth-child(4)').textContent = data.foto_left_p2;
 
-            document.querySelector('.foto_left a').textContent = data.foto_left_button1;
 
-            document.querySelector('.foto_right h2').textContent = data.foto_right_h2;
-            document.querySelector('.foto_right p:nth-child(2)').textContent = data.foto_right_p2;
-            document.querySelector('.foto_right p:nth-child(4)').textContent = data.foto_right_p3;
 
-            document.querySelector('.foto_right a').textContent = data.foto_right_button2;
+// $(document).ready(function () {
+//     let sliderContainer = $('#sclick_slider');
 
-            document.querySelector('.footer_box1 h3').textContent = data.footer_box1_h3;
-            document.querySelector('.footer_box1 ul li:nth-child(1) a').textContent = data.footer_box1_ul_li1;
-            document.querySelector('.footer_box1 ul li:nth-child(2) a').textContent = data.footer_box1_ul_li2;
+//     // Загрузка данных из файла tovar.json с использованием fetch
+//     fetch('./tovar.json')
+//         .then(response => response.json())
+//         .then(data => {
+//             let itemsWithRating5 = [...data.asortiment.bra, ...data.asortiment.underpants].filter(item => item.rating === 5);
 
-            document.querySelector('.footer_box2 ul li:nth-child(1)').textContent = data.footer_box2_ul_li1;
-            document.querySelector('.footer_box2 ul li:nth-child(2)').textContent = data.footer_box2_ul_li2;
-            document.querySelector('.footer_box2 ul li:nth-child(3)').textContent = data.footer_box2_ul_li3;
+//             // Получаем начальное значение счетчика из localStorage
+//             let savedCartItemCount = parseInt(localStorage.getItem("cartItemCount")) || 0;
+//             let cartItemCount = document.getElementById("cartItemCount");
+//             cartItemCount.innerHTML = savedCartItemCount;
+//             .log(savedCartItemCount);
 
-            // и так далее...
-        })
-        .catch(error => console.error('Ошибка при загрузке файла перевода:', error));
-});
+//             // Iterate through filtered items and create slider slides
+//             itemsWithRating5.forEach(item => {
+//                 let link = $('<a class="product"></a>');
 
+//                 // Установите href атрибут для перехода на страницу товара с параметром itemId
+//                 link.attr('href', `index2.html?itemId=${item.id}`);
+
+//                 let itemContainer = $('<div class="item"></div>');
+//                 itemContainer.append(`<img src="${item.img}" alt="${item.name}">`);
+//                 itemContainer.append(`<h3>${item.name}</h3>`);
+//                 itemContainer.append(`<p>${item.price} грн</p>`);
+
+//                 link.append(itemContainer);
+//                 sliderContainer.append(link);
+//             });
+
+//             // Initialize the slider
+//             sliderContainer.slick({
+//                 arrows: true,
+//                 slidesToShow: 3,
+//                 slidesToScroll: 1
+//             });
+//         })
+//         .catch(error => console.error('Ошибка при загрузке файла tovar.json:', error));
+// });

@@ -4,154 +4,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>JORMI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
-  <header>
-    <div class="header_meni_left">
-      <h2 class="text_logo">JORMI</h2>
-      <ul class="ListOfClothes">
-        <li><a href="index.html">Головна</a></li>
-        <li><a href="shop.html">Магазин</a></li>
-        <li><a href="#">Контакти</a></li>
-        <li><a href="#">Коментарі</a></li>
-      </ul>
-    </div>
-    <div class="header_meni_right">
-      <input type="search" id="poisk">
-      <button type="button" id="lupa"></button>
-      <div id="karzina"><span id="cartItemCount">0</span></div>
-    </div>
+<body id="shop_page">
+  <div class="preloader">
+    <div class="preloader_image"></div>
+  </div>
+  <select id="languageSelector">
+    <option value="lang-ua.json">Українська</option>
+    <option value="lang-en.json">English</option>
+  </select>
+  <div>
+    <header>
+      <div>
+        <div class="header_left">
+          <div class="header_meni_left">
+            <a href="./index.html">
+              <h2 class="text_logo">Angelika</h2>
+            </a>
+
+            <ul class="ListOfClothes">
+              <li class="activeLink"><a href="index.html" class="lng-homeq">Головна</a></li>
+              <li><a href="shop.html" class="lng-shopq">Магазин</a></li>
+              <li><a href="#contacts" class="lng-contactsq">Контакти</a></li>
+              <li><a href="#" class="lng-commentsq">Коментарі</a></li>
+            </ul>
+
+            <select class="change-lang">
+              <option value="ua">UA</option>
+              <option value="en">EN</option>
+            </select>
+            <div class="header_meni_right">
+              <div id="poisk">
+                <button id="closeSerch" type="button"><img width="30" height="30"
+                    src="https://img.icons8.com/ios/50/1A1A1A/cancel.png" alt="cancel" /></button>
+                <input type="search">
+              </div>
+              <button type="button" id="lupa"></button>
+              <div id="karzina"><img width="35" height="35"
+                  src="https://img.icons8.com/pastel-glyph/64/1A1A1A/shopping-cart--v1.png"
+                  alt="shopping-cart--v1" /><span id="cartItemCount">0</span><span id="totalOrderAmount"></span></div>
+            </div>
+
+            <div class="mobile-menu-button">
+              <div id="burgerMenu">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+              </div>
+              <ul class="mobileMeni">
+                  <button id="closeButton" type="button">X</button>
+                  <li class="activeLink"><a href="index.html" class="lng-home">Головна</a></li>
+                  <li><a href="shop.html" class="lng-shop">Магазин</a></li>
+                  <li><a href="#contacts" class="lng-contacts">Контакти</a></li>
+                  <li><a href="#" class="lng-comments">Коментарі</a></li>
+              </ul>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </header>
+    </header>
     <div id="open_window">
       <div class="txt">
-          <h2>Кошик</h2>
-          <button id="closeWindow" type="button"></button>
+        <h2>Кошик</h2>
+        <button id="closeWindow" type="button"><img width="50" height="50"
+            src="https://img.icons8.com/ios/50/1A1A1A/cancel.png" alt="cancel" /></button>
       </div>
       <ul id="cartItems"></ul>
-      <a id="zakaz_tovara" href="poshta/poshta.html">Оформить заказ</a>
-  </div>
-  </header>
-  <div class="container_product">
-    <div id="sort-select">
-      <!-- <label>
-        <input id="zxc" type="radio" name="sort" value="name"> Сортировка по имени
-      </label> -->
-      <div class="price_filter">
-        <h4>Сортировка по цене</h4>
-        <label>
-          <input id="qwe" type="radio" name="sort" value="price_plus">Сортировка по цене
-        </label>
-        <label>
-          <input id="ewq" type="radio" name="sort" value="price_minus">Сортировка по цене
-        </label>
+      <p id="totalAmount"></p>
+      <a id="zakaz_tovara" href="poshta/poshta.html">оформити заказ</a>
+    </div>
+    <div class="container_product">
+      <div id="sort-select">
+        <div class="qweqwe">
+          <div class="price_filter">
+            <h4>Сортировка по цене</h4>
+            <label>
+              <input id="qwe" type="radio" name="sort" value="price_plus">От меньшего к большему
+            </label>
+            <label>
+              <input id="ewq" type="radio" name="sort" value="price_minus">От большего к меньшему
+            </label>
+          </div>
+          <div class="country_filter">
+            <h4>Сортировка по странам</h4>
+            <label for="">
+              <input type="checkbox" name="country" value="USA">США
+            </label>
+            <label for="">
+              <input type="checkbox" name="country" value="Italy">Италия
+            </label>
+            <label for="">
+              <input type="checkbox" name="country" value="Китай">Китай
+            </label>
+            <label for="">
+              <input type="checkbox" name="country" value="Germany">Германия
+            </label>
+          </div>
+          <div class="price_filter2">
+            <div id="slider"></div>
+            <p>Значение ползунков: <span id="value1">0</span> и <span id="value2">200</span></p>
+          </div>
+        </div>
       </div>
-      <div class="country_filter">
-        <h4>Сортировка по странам</h4>
-        <label for="">
-          <input type="checkbox" name="country" value="USA"> USA
-        </label>
-        <label for="">
-          <input type="checkbox" name="country" value="Китай"> Китай
-        </label>
-        <label for="">
-          <input type="checkbox" name="country" value="Italy"> Италия
-        </label>
-        <label for="">
-          <input type="checkbox" name="country" value="France"> Франция
-        </label>
-        <label for="">
-          <input type="checkbox" name="country" value="Germany"> Германия
-        </label>
+
+      <div id="productContainer">
       </div>
     </div>
-    <div id="product-container">
+    <footer class="footer" id="contacts">
+      <div class="container">
+        <h1>Наші контакті</h1>
+        <div class="footer_boxs">
+          <div class="footer_box1">
+            <ul>
+              <h3 class="lng-footer_box1_h3">Наші соц сторінки</h3>
+              <a href=""><img width="60" height="60"
+                  src="https://img.icons8.com/ios-glyphs/60/FFFFFF/instagram-circle.png" alt="instagram-circle" /></a>
+              <a href=""><img width="60" height="60" src="https://img.icons8.com/glyph-neue/64/FFFFFF/facebook-new.png"
+                  alt="facebook-new" /></a>
 
-    </div>
-  </div>
+            </ul>
+          </div>
+          <div class="adres">
+            <ul>
+              <img width="60" height="60" src="https://img.icons8.com/ios/50/FFFFFF/marker--v1.png" alt="marker--v1" />
+              <h3 class="adress_opus">Ми зноходемось</h3>
+              <li class="lng-footer_box2_ul_li1">г. Покровськ</li>
+              <li class="lng-footer_box2_ul_li1">вул. Тургенєва, 6</li>
+              <li class="lng-footer_box2_ul_li1">Центральний ринок</li>
+              <li><a href="">Мапа</a></li>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d409.28953805849886!2d37.17214489727224!3d48.27569405317803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sru!2sua!4v1695414907596!5m2!1sru!2sua"
+                width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-  <script type="module">
-    import asortiment from './tovar.js';
+            </ul>
+          </div>
+          <div class="time">
+            <ul>
+              <img width="60" height="60" src="https://img.icons8.com/ios/50/FFFFFF/clock--v3.png" alt="clock--v3" />
+              <li>З вівторка до неділі</li>
+              <li>Працюэмо з 8:00 до 14:00</li>
+            </ul>
+          </div>
+          <div class="footer_box2">
+            <ul>
+              <img width="60" height="60" src="https://img.icons8.com/ios/50/FFFFFF/phone--v1.png" alt="phone--v1" />
+              <h3 style="color: #fff;">Подзвоніть нам</h3>
+              <li><a class="lng-footer_box2_ul_li2" href="tel: +380961111111">тел. +380961111111</a></li>
+              <li><a class="lng-footer_box2_ul_li3" href="tel: +380672222222">тел. +380672222222</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="./style.js"></script>
+    <script type="module" src="./shop.js"></script>
+    <script type="module" src="./style2.js"></script>
+    <script type="module" src="./karzina.js"></script>
+    <script>window.setTimeout(function () {
+        document.body.classList.add("loaded")
+      }, 1000)
 
-    console.log(asortiment);
-
-    $(document).ready(function () {
-      let container = $('#product-container');
-      let sortRadios = $('input[name="sort"]');
-      let countryFilter = $('input[name="country"]');
-
-      let sortingFunction;
-      let selectedCountry = '';
-
-      function updateProductsDisplay(products) {
-        container.empty();
-
-        products.forEach(function (item) {
-          let productLink = $('<a href="index2.html?item=' + encodeURIComponent(item.name) + '" class="product-link"></a>');
-
-          let productElement = $('<div class="product"></div>');
-          productElement.append('<img src="' + item.img + '" alt="' + item.name + '">');
-          productElement.append('<h2>' + item.name + '</h2>');
-          productElement.append('<p>Ціна: $' + item.price + '</p>');
-
-          productLink.append(productElement);
-          container.append(productLink);
-        });
-      }
-
-      let allProducts = [...asortiment.bra, ...asortiment.underpants];
-      updateProductsDisplay(allProducts);
-
-      //underpants
-
-      sortRadios.on('change', updateSorting);
-      countryFilter.on('change', updateSorting);
-
-      function updateSorting() {
-        let sortBy = sortRadios.filter(':checked').val();
-        selectedCountry = countryFilter.filter(':checked').map(function () {
-          return this.value;
-        }).get(); // Получаем массив выбранных стран
-
-        if (sortBy === 'price_plus') {
-          sortingFunction = sortByPriceAscending;
-        } else if (sortBy === 'price_minus') {
-          sortingFunction = sortByPriceDescending;
-        }
-
-        let filteredProducts = [...asortiment.bra, ...asortiment.underpants].filter(function (item) {
-          if (selectedCountry.length === 0) {
-            return true; // Показываем все товары, если не выбрано стран
-          }
-          return selectedCountry.includes(item.country);
-        });
-
-        filteredProducts.sort(sortingFunction);
-        updateProductsDisplay(filteredProducts);
-      }
-
-      function sortByPriceAscending(a, b) {
-        return a.price - b.price;
-      }
-
-      function sortByPriceDescending(a, b) {
-        return b.price - a.price;
-      }
-    });
-  </script>
-
-
-  <script type="module" src="tovar.js"></script>
-  <script type="module" src="style.js"></script>
-  <script type="module" src="style2.js"></script>
+    </script>
 </body>
 
 </html>

@@ -4,92 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JORMI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
+<body id="home_page">
+    <div class="preloader">
+        <div class="preloader_image"></div>
+    </div>
     <header>
         <div class="header">
             <div class="header_left">
                 <div class="header_meni_left">
-                    <h2 class="text_logo">JORMI</h2>
+                    <a href="./index.html">
+                        <h2 class="text_logo">Angelika</h2>
+                    </a>
+
                     <ul class="ListOfClothes">
-                        <li><a href="index.html" data-translate="home">Головна</a></li>
-                        <li><a href="shop.html" data-translate="shop">Магазин</a></li>
-                        <li><a href="#" data-translate="Contacts">Контакти</a></li>
-                        <li><a href="#" data-translate="Comments">Коментарі</a></li>
+                        <li class="activeLink"><a href="index.html" class="lng-homeq">Головна</a></li>
+                        <li><a href="shop.html" class="lng-shopq">Магазин</a></li>
+                        <li><a href="#contacts" class="lng-contactsq">Контакти</a></li>
+                        <li><a href="#" class="lng-commentsq">Коментарі</a></li>
                     </ul>
+
+                    <select class="change-lang">
+                        <option value="ua">UA</option>
+                        <option value="en">EN</option>
+                    </select>
+                    <div class="header_meni_right">
+                        <div id="poisk">
+                            <button id="closeSerch" type="button"><img width="30" height="30"
+                                    src="https://img.icons8.com/ios/50/1A1A1A/cancel.png" alt="cancel" /></button>
+                            <input type="search">
+                        </div>
+                        <button type="button" id="lupa"></button>
+                        <div id="karzina"><img width="40" height="40"
+                                src="https://img.icons8.com/pastel-glyph/64/1A1A1A/shopping-cart--v1.png"
+                                alt="shopping-cart--v1" /><span id="cartItemCount">0</span><span
+                                id="totalOrderAmount"></span></div>
+                    </div>
+                    <div class="mobile-menu-button">
+                        <div id="burgerMenu">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <ul class="mobileMeni">
+                            <button id="closeButton" type="button">X</button>
+                            <li class="activeLink"><a href="index.html" class="lng-home">Головна</a></li>
+                            <li><a href="shop.html" class="lng-shop">Магазин</a></li>
+                            <li><a href="#contacts" class="lng-contacts">Контакти</a></li>
+                            <li><a href="#" class="lng-comments">Коментарі</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="header_middle">
                     <div class="header_text">
-                        <h1 data-translate="header_text_h1">Великий вибір одягу нової колекції</h1>
-                        <p data-translate="header_text_p">Ми ручаемося за якість одягу на будь який смак</p>
-                        <a data-translate="header_text_button" href="#">НОВА КОЛЕКЦІЯ</a>
+                        <h1 class="lng-header-text-h1">Великий вибір одягу нової колекції</h1>
+                        <p class="lng-headerTextP">Ми ручаемося за якість одягу на будь який смак</p>
+                        <a href="#" class="lng-headerTextButton">НОВА КОЛЕКЦІЯ</a>
                     </div>
-                    <div class="box_header_midle_img">
-                        <img src="img/night.jpg" alt="logo2">
-                    </div>
-                </div>
-                <div id="box">
-                    <div>
-                        <div class="osortiment">
-                            <img src="" alt="foto">
-                            <p>Кофты</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="osortiment">
-                            <img src="" alt="foto">
-                            <p>Боди</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="osortiment">
-                            <img src="" alt="foto">
-                            <p>Штаны</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="osortiment">
-                            <img src="" alt="foto">
-                            <p>Сумки</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a href=""></a>
-            <div class="header_right">
-                <div class="header_meni_right">
-                    <input type="search" id="poisk">
-                    <button type="button" id="lupa"></button>
-                    <div id="karzina"><span id="cartItemCount">0</span></div>
-                </div>
-
-                <select id="languageSelector">
-                    <option value="lang-ua.json">Українська</option>
-                    <option value="lang-en.json">English</option>
-                    <!-- Добавьте другие языки по аналогии -->
-                </select>
-
-                <div id="box_foto" class="box_foto">
-                    <img src="img/night.jpg" alt="foto">
-                    <div class="text">
-                        <p>Доступны кольора</p>
-                        <div id="color">
-                            <div id="color1"></div>
-                            <div id="color2"></div>
-                            <div id="color3"></div>
-                            <div id="color4"></div>
-                        </div>
-                    </div>
+                    <div class="box_header_midle_img"></div>
                 </div>
             </div>
     </header>
@@ -97,25 +80,38 @@
         <div id="open_window">
             <div class="txt">
                 <h2>Кошик</h2>
-                <button id="closeWindow" type="button"></button>
+                <button id="closeWindow" type="button"><img width="50" height="50"
+                        src="https://img.icons8.com/ios/50/1A1A1A/cancel.png" alt="cancel" /></button>
             </div>
             <ul id="cartItems"></ul>
-            <a id="zakaz_tovara" href="poshta/poshta.html">Оформить заказ</a>
+            <p id="totalAmount"></p>
+            <a id="zakaz_tovara" href="poshta/poshta.html">оформити заказ</a>
         </div>
         <div class="container">
             <div class="aboutUs">
-                <h2 data-translate="aboutUs_h2">Про нас</h2>
+                <h2 class="lng-aboutUsH2">Про нас</h2>
                 <div class="aboutUs_text_box">
                     <div class="aboutUs_img">
-                        <img src="img/night.jpg" alt="qwe">
+                        <img src="img/qwer.jpg" alt="qwe">
                     </div>
                     <div class="aboutUs_txt">
-                        <p data-translate="aboutUs_txt_p">Здравствуйте, за этим действительно больно следить. Его старейшины освобождены! Великие неприятности в бегстве обвинителей приходится ожидать в самые ясные времена. Может ли он искать его в наше время, но развращенное нами, но которого мы обвиняем в том, что он следует обязанностям и страданиям мудрых, но удовольствиям? Тело хочет чего-то свободного от жизни. Спорим, он некоторых ненавидит? Она, мы обвиняем ее в терпении великой боли, будет ли она часто открывать дверь и не развратится лестью этих нужд обвинителей? Изобретатель, или боль. Но посмотрите всю причину, по которой никто из развращённых мягкостью, спасаемых и истинных не впадает в долги, боль отказа от лести, потому и сам выбор есть великое удовольствие! Оттолкнутый, с болями и страданиями, свободный отталкивает архитектора к самому грубому, и я не объясню обучения, ослепленного лестью, я прощу его хлопоты с обязанностями. Мешает нам переносить боль или истина, что никакое удовольствие, в котором мы обвиняем, не последует за нами.</p>
+                        <p class="lng-aboutUs_txt_p">Здравствуйте, за этим действительно больно следить. Его
+                            старейшины освобождены! Великие неприятности в бегстве обвинителей приходится ожидать в
+                            самые ясные времена. Может ли он искать его в наше время, но развращенное нами, но которого
+                            мы обвиняем в том, что он следует обязанностям и страданиям мудрых, но удовольствиям? Тело
+                            хочет чего-то свободного от жизни. Спорим, он некоторых ненавидит? Она, мы обвиняем ее в
+                            терпении великой боли, будет ли она часто открывать дверь и не развратится лестью этих нужд
+                            обвинителей? Изобретатель, или боль. Но посмотрите всю причину, по которой никто из
+                            развращённых мягкостью, спасаемых и истинных не впадает в долги, боль отказа от лести,
+                            потому и сам выбор есть великое удовольствие! Оттолкнутый, с болями и страданиями, свободный
+                            отталкивает архитектора к самому грубому, и я не объясню обучения, ослепленного лестью, я
+                            прощу его хлопоты с обязанностями. Мешает нам переносить боль или истина, что никакое
+                            удовольствие, в котором мы обвиняем, не последует за нами.</p>
                         <div class="spisok">
-                            <div data-translate="spisok_li">Интернет за самой болью нужно следить.</div>
-                            <div data-translate="spisok_li">Интернет за самой болью нужно следить.</div>
-                            <div data-translate="spisok_li">Интернет за самой болью нужно следить.</div>
-                            <div data-translate="spisok_li">Интернет за самой болью нужно следить.</div>
+                            <div class="lng-spisok_li">Завжди у наявності новинки.</div>
+                            <div class="lng-spisok_liq">Підхід до кожного клієнта.</div>
+                            <div class="lng-spisok_liw">Можливість замовити модель в потрібному розмірі.</div>
+                            <div class="lng-spisok_lie">Знижки постійним клієнтам.</div>
                         </div>
                     </div>
                 </div>
@@ -127,73 +123,95 @@
                 <div class="elem2"></div>
                 <div class="collection2023">
                     <p>2023</p>
-                    <p data-translate="collection2023-p">колекція</p>
+                    <p class="lng-collection2023-p">колекція</p>
                 </div>
                 <div class="elem3"></div>
                 <div class="elem4"></div>
                 <div class="excluziv">
-                    <p data-translate="excluziv_p">Ексклюзивна колекція літнього одягу</p>
+                    <p class="lng-excluziv_p">Ексклюзивна колекція літнього одягу</p>
                 </div>
                 <div class="elem5"></div>
             </div>
         </div>
         <div class="box_slaider">
-            <h2 data-translate="box_slaider_h2">Самые популярные товары</h2>
+            <!-- <h2 class="lng-box_slaider_h2">Самые популярные товары</h2> -->
             <div id="sclick_slider" class="slider"></div>
         </div>
         <div class="foto">
             <div class="container">
                 <div class="foto_text">
-                    <p data-translate="foto_text_p">Встигни придбати одяг на будь-який смак за знижкою 40%</p>
+                    <p class="lng-foto_text_p">Встигни придбати одяг на будь-який смак за знижкою 40%</p>
                     <div>
-                        <a data-translate="foto_text_a" href="shop.html">МАГАЗИН</a>
+                        <a class="lng-foto_text_a" href="shop.html">МАГАЗИН</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="foto_box">
-            <div class="foto_left">
-                <h2 data-translate="foto_left_h2">Лляна сукня - тренд осені 2023</h2>
-                <p data-translate="foto_left_p1">21 червня 2023</p>
-                <img src="img/night.jpg" alt="foto">
-                <p data-translate="foto_left_p2">Встигни придбати одяг на будь-який смак за знижкою 40%</p>
-                <a data-translate="foto_left_button1" href="#">ДЕТАЛЬНіШЕ1</a>
-            </div>
-            <div class="foto_right">
-                <h2 data-translate="foto_right_h2">Наймодніші купальники цієї осені</h2>
-                <p data-translate="foto_right_p2">10 червня 2023</p>
-                <img src="img/night.jpg" alt="foto">
-                <p data-translate="foto_right_p3">Встигни придбати одяг на будь-який смак за знижкою 40%</p>
-                <a data-translate="foto_right_button2" href="#">ДЕТАЛЬНіШЕ2</a>
-            </div>
-        </div>
     </main>
-    <footer class="footer">
+    <footer class="footer" id="contacts">
         <div class="container">
+            <h1>Наші контакті</h1>
             <div class="footer_boxs">
                 <div class="footer_box1">
-                    <h3 data-translate="footer_box1_h3">Наши соцсети</h3>
+                    <h3 class="lng-footer_box1_h3">Наші соц сторінки</h3>
                     <ul>
-                        <li data-translate="footer_box1_ul_li1"><a href="#">Инстаграмм</a></li>
-                        <li data-translate="footer_box1_ul_li2"><a href="#">Фейсбук</a></li>
+                        
+                        <a href=""><img width="40" height="40"
+                                src="https://img.icons8.com/ios-glyphs/60/FFFFFF/instagram-circle.png"
+                                alt="instagram-circle" /></a>
+                        <a href=""><img width="40" height="40"
+                                src="https://img.icons8.com/glyph-neue/64/FFFFFF/facebook-new.png"
+                                alt="facebook-new" /></a>
+
+                    </ul>
+                </div>
+                <div class="adres">
+                    <ul>
+                        <img width="40" height="40" src="https://img.icons8.com/ios/50/FFFFFF/marker--v1.png"
+                            alt="marker--v1" />
+                        <h3 class="adress_opus">Ми зноходемось</h3>
+                        <li class="lng-footer_box2_ul_li1">г. Покровськ</li>
+                        <li class="lng-footer_box2_ul_li1">вул. Тургенєва, 6</li>
+                        <li class="lng-footer_box2_ul_li1">Центральний ринок</li>
+                        <li><a href="">Мапа</a></li>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d409.28953805849886!2d37.17214489727224!3d48.27569405317803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sru!2sua!4v1695414907596!5m2!1sru!2sua"
+                            width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    </ul>
+                </div>
+                <div class="time">
+                    <ul>
+                        <img width="40" height="40" src="https://img.icons8.com/ios/50/FFFFFF/clock--v3.png"
+                            alt="clock--v3" />
+                        <h3 style="color: #fff;">Часи роботи</h3>
+                        <li>З вівторка до неділі</li>
+                        <li>Працюэмо з 8:00 до 14:00</li>
                     </ul>
                 </div>
                 <div class="footer_box2">
                     <ul>
-                        <li data-translate="footer_box2_ul_li1">г. Покровск</li>
-                        <li data-translate="footer_box2_ul_li2">тел. +380961111111</li>
-                        <li data-translate="footer_box2_ul_li3">тел. +380682222222</li>
+                        <img width="40" height="40" src="https://img.icons8.com/ios/50/FFFFFF/phone--v1.png"
+                            alt="phone--v1" />
+                        <h3 style="color: #fff;">Подзвоніть нам</h3>
+                        <li><a class="lng-footer_box2_ul_li2" href="tel: +380961111111">тел. +380961111111</a></li>
+                        <li><a class="lng-footer_box2_ul_li3" href="tel: +380672222222">тел. +380672222222</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
-    
-    <script type="module" src="tovar.js"></script>
-    
-    <script type="module" src="style.js"></script>
-    <script type="module" src="style2.js"></script>
-    
+    <script src="./lang/lang.js"></script>
+    <script src="./lang/multiLang.js"></script>
+    <script type="module" src="./style2.js"></script>
+    <script type="module" src="./karzina.js"></script>
+    <script type="module" src="./style.js"></script>
+    <script>window.setTimeout(function () {
+            document.body.classList.add("loaded")
+        }, 1000)
+
+    </script>
 </body>
 
 </html>

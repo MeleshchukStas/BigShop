@@ -4,158 +4,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JORMI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
-    <form action="telegram.php" method="POST" id="orderForm">
-        <select id="areaSelect" name="getAre">
-            <option value="">Выберите область</option>
-        </select>
-        <select id="citySelect" name="getCity">
-            <option value="">Выберите город</option>
-        </select>
-        <select id="warehouseSelect" name="getWarehouse">
-            <option value="">Выберите відділення або поштомат</option>
-        </select>
-        <fieldset id="orderCards"></fieldset>
-        <input type="hidden" name="getSpisok" id="qwer">
+    <header>
+        <header>
+            <div class="preloader">
+              <div class="preloader_image"></div>
+          </div>
+        <div>
+            <div class="header_left">
+                <div class="header_meni_left">
+                    <a href="./index.html">
+                        <h2 class="text_logo">Angelika</h2>
+                    </a>
+                    <div class="mobile-menu-button">
+                        <div id="burgerMenu">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <ul class="mobileMeni">
+                            <button id="closeButton" type="button">X</button>
+                            <li class="activeLink"><a href="../index.html" data-translate="home">Головна</a></li>
+                            <li><a href="../shop.html" data-translate="shop">Магазин</a></li>
+                            <li><a href="#" data-translate="Contacts">Контакти</a></li>
+                            <li><a href="#" data-translate="Comments">Коментарі</a></li>
+                        </ul>
+                    </div>
+                    <ul class="ListOfClothes">
+                        <li class="activeLink"><a href="../index.html" data-translate="home">Головна</a></li>
+                        <li><a href="../shop.html" data-translate="shop">Магазин</a></li>
+                        <li><a href="#" data-translate="Contacts">Контакти</a></li>
+                        <li><a href="#" data-translate="Comments">Коментарі</a></li>
+                    </ul>
 
-        <button id="your_button" type="submit">Зробити замовлення</button>
+                    <select id="languageSelector">
+                        <option value="lang-ua.json">Українська</option>
+                        <option value="lang-en.json">English</option>
+                        <!-- Добавьте другие языки по аналогии -->
+                    </select>
+                    <div class="header_meni_right">
+                        <input type="search" id="poisk">
+                        <button type="button" id="lupa"></button>
+                        <div id="karzina"><img width="35" height="35" src="https://img.icons8.com/pastel-glyph/64/1A1A1A/shopping-cart--v1.png" alt="shopping-cart--v1"/><span id="cartItemCount">0</span><span id="totalOrderAmount"></span></div>
+                    </div>
+                </div>
+                
+            </div>
+    </header>
+    <div class="header">
+        <div id="open_window">
+            <div class="txt">
+                <h2>Кошик</h2>
+                <button id="closeWindow" type="button"><img width="50" height="50"
+                        src="https://img.icons8.com/ios/50/1A1A1A/cancel.png" alt="cancel" /></button>
+            </div>
+            <ul id="cartItems"></ul>
+            <p id="totalAmount"></p>
+            <a id="zakaz_tovara" href="poshta/poshta.html">оформити заказ</a>
+        </div>
+        <main class="posta">
+            <form action="telegram.php" method="POST" id="orderForm">
+                <input type="text" placeholder="Имя" name="firstName" id="firstName">
+                <input type="text" placeholder="Фамилия" name="lastName" id="lastName">
+                <input type="email" placeholder="E-mail" name="email" id="email">
+                <input type="phone" placeholder="Номер телефона" name="phone" id="phone">
+                <select id="areaSelect" name="getAre">
+                    <option value="">Выберите область</option>
+                </select>
+                <select id="citySelect" name="getCity">
+                    <option value="">Выберите город</option>
+                </select>
+                <select id="warehouseSelect" name="getWarehouse">
+                    <option value="">Выберите відділення або поштомат</option>
+                </select>
+                <input type="hidden" name="areaDescription" id="areaDescription">
+                <input type="hidden" name="cityDescription" id="cityDescription">
+                <input type="hidden" name="warehouseDescription" id="warehouseDescription">
+                <input type="hidden" name="getSpisok" id="getSpisok">
+                <button id="your_button" type="submit">Зробити замовлення</button>
+            </form>
+            <div id="cartItemsContainer">
+                
+            </div>
+        </main>
+    </div>
+    <footer class="footer" id="contacts">
+        <div class="container">
+            <h1>Наші контакті</h1>
+            <div class="footer_boxs">
+                <div class="footer_box1">
+                    <ul>
+                    <h3 class="lng-footer_box1_h3">Наші соц сторінки</h3>
+                        <a href=""><img width="60" height="60" src="https://img.icons8.com/ios-glyphs/60/FFFFFF/instagram-circle.png" alt="instagram-circle" /></a>
+                        <a href=""><img width="60" height="60" src="https://img.icons8.com/glyph-neue/64/FFFFFF/facebook-new.png" alt="facebook-new" /></a>
 
-    </form>
-
+                    </ul>
+                </div>
+                <div class="adres">
+                    <ul>
+                        <img width="60" height="60" src="https://img.icons8.com/ios/50/FFFFFF/marker--v1.png" alt="marker--v1" />
+                        <h3 class="adress_opus">Ми зноходемось</h3>
+                        <li class="lng-footer_box2_ul_li1">г. Покровськ</li>
+                        <li class="lng-footer_box2_ul_li1">вул. Тургенєва, 6</li>
+                        <li class="lng-footer_box2_ul_li1">Центральний ринок</li>
+                        <li><a href="">Мапа</a></li>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d409.28953805849886!2d37.17214489727224!3d48.27569405317803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sru!2sua!4v1695414907596!5m2!1sru!2sua" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        
+                    </ul>
+                </div>
+                <div class="time">
+                    <ul>
+                        <img width="60" height="60" src="https://img.icons8.com/ios/50/FFFFFF/clock--v3.png" alt="clock--v3"/>
+                        <h3>Графік роботи</h3> 
+                        <li>З вівторка до неділі</li>
+                        <li>Працюэмо з 8:00 до 14:00</li>
+                    </ul>
+                </div>
+                <div class="footer_box2">
+                    <ul>
+                        <img width="60" height="60" src="https://img.icons8.com/ios/50/FFFFFF/phone--v1.png" alt="phone--v1" />
+                        <h3 style="color: #fff;">Подзвоніть нам</h3>
+                        <li><a class="lng-footer_box2_ul_li2" href="tel: +380961111111">тел. +380961111111</a></li>
+                        <li><a class="lng-footer_box2_ul_li3" href="tel: +380672222222">тел. +380672222222</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script type="module" src="../style2.js"></script>
-    <script type="module">
+    <script type="module" src="../karzina.js"></script>
+    <script type="module" src="./poshta.js"></script>
+    <script>window.setTimeout(function () {
+        document.body.classList.add("loaded")
+    }, 1000)
 
-        let api_key = "397247055895a5cc6e4ce89f2bfb7000";
-        let api_url = "https://api.novaposhta.ua/v2.0/json/";
-
-        let areaSelect = document.getElementById("areaSelect");
-        let citySelect = document.getElementById("citySelect");
-        let warehouseSelect = document.getElementById("warehouseSelect");
-
-        function makePostRequest(method, params, callback) {
-            let requestData = {
-                apiKey: api_key,
-                modelName: "Address",
-                calledMethod: method,
-                methodProperties: params,
-            };
-
-            let request = new XMLHttpRequest();
-            request.open("POST", api_url, true);
-            request.setRequestHeader("Content-Type", "application/json");
-
-            request.onload = function () {
-                if (request.status === 200) {
-                    let response = JSON.parse(request.responseText);
-                    callback(response.data);
-                } else {
-                    console.error("Ошибка при выполнении запроса:", request.statusText);
-                }
-            };
-
-            request.send(JSON.stringify(requestData));
-        }
-
-        function createOption(element, value, text) {
-            let option = document.createElement("option");
-            option.value = value;
-            option.text = text;
-            element.appendChild(option);
-        }
-
-        function loadAreas() {
-            makePostRequest("getAreas", {}, areas => {
-                areas.forEach(area => {
-                    createOption(areaSelect, area.Ref, area.Description);
-                });
-
-                areaSelect.addEventListener("change", () => {
-                    loadCities(areaSelect.value);
-                });
-            });
-        }
-
-        function loadCities(areaRef) {
-            citySelect.innerHTML = '<option value="">Выберите город</option>';
-            warehouseSelect.innerHTML = '<option value="">Выберите відділення або поштомат</option>';
-
-            let cityParams = {
-                AreaRef: areaRef,
-            };
-
-            makePostRequest("getCities", cityParams, cities => {
-                cities.forEach(city => {
-                    createOption(citySelect, city.Ref, city.Description);
-                });
-
-                citySelect.addEventListener("change", () => {
-                    loadWarehouses(citySelect.value);
-                });
-            });
-        }
-
-        function loadWarehouses(cityRef) {
-            warehouseSelect.innerHTML = '<option value="">Выберите відділення або поштомат</option>';
-
-            let warehouseParams = {
-                CityRef: cityRef,
-            };
-
-            makePostRequest("getWarehouses", warehouseParams, warehouses => {
-                warehouses.forEach(warehouse => {
-                    createOption(warehouseSelect, warehouse.Ref, warehouse.Description);
-                });
-            });
-        }
-
-        loadAreas()
-
-        document.addEventListener('DOMContentLoaded', function () {
-            let savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-            let orderForm = document.getElementById("orderCards");
-            let qwer = document.getElementById("qwer");
-
-
-            let asdf = "";
-
-            savedCartItems.forEach((item, index) => {
-                let card = document.createElement("fieldset");
-                card.classList.add("product-card");
-
-                let itemName = document.createElement("h3");
-                itemName.textContent = item.name;
-
-                let itemImage = document.createElement("img");
-                itemImage.src = item.img;
-                itemImage.alt = item.name;
-
-                let itemSize = document.createElement("p");
-                itemSize.textContent = ` Розмір: ${item.selectedSizes} `;
-
-                let itemPrice = document.createElement("p");
-                itemPrice.textContent = ` Ціна: ${item.price} грн. `;
-
-                card.appendChild(itemName);
-                card.appendChild(itemImage);
-                card.appendChild(itemSize);
-                card.appendChild(itemPrice);
-
-                orderForm.appendChild(card);
-
-                asdf += itemName.textContent + itemSize.textContent + itemPrice.textContent + '\n';
-
-            });
-
-            console.log(asdf);
-            qwer.value = asdf;
-        });
-
-
-    </script>
+</script>
 </body>
 
 </html>

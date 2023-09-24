@@ -1,207 +1,385 @@
-import asortiment from './tovar.js';
+let openWindow = document.getElementById('open_window');
+let cartItems = document.querySelector("#cartItems");
 
-const productInfo = document.getElementById("productInfo");
-const htwo = document.querySelector(".nameT");
-const img = document.querySelector(".imgT");
-const sizes = document.querySelector(".SizesT");
-const cup = document.querySelector(".cupT");
-const material = document.querySelector(".materialT");
-const color = document.querySelector(".ColorT");
-const braShape = document.querySelector(".brashapeT");
-const straps = document.querySelector(".strapsT");
-const style = document.querySelector(".styleT");
-const clasp = document.querySelector(".claspT");
-const country = document.querySelector(".countryT");
-const composition = document.querySelector(".compositionT");
-const print = document.querySelector(".printT");
-const decoration = document.querySelector(".decorationT");
-const rating = document.querySelector(".RatingT");
-const price = document.querySelector(".PriceT");
-
-let selectedSizes = [];
-let cartItems = [];
-
-function updateSelectedSizes(product, size) {
-    if (!product.selectedSizes) {
-        product.selectedSizes = [];
-    }
-
-    if (product.selectedSizes.includes(size)) {
-        // Размер уже выбран, уберите его
-        const index = product.selectedSizes.indexOf(size);
-        if (index !== -1) {
-            product.selectedSizes.splice(index, 1);
-        }
+function toggleWindowDisplay(element) {
+    if (element.style.display === "block") {
+        element.style.display = "none";
     } else {
-        // Размер не выбран, добавьте его
-        product.selectedSizes.push(size);
+        element.style.display = "block";
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const itemName = urlParams.get('item');
+karzina.onclick = function () {
+    toggleWindowDisplay(openWindow);
+};
 
-    if (itemName) {
-        let selectedProduct = [...asortiment.bra, ...asortiment.underpants].find(item => item.name === itemName);
+closeWindow.onclick = function () {
+    toggleWindowDisplay(openWindow);
+};
 
-        if (selectedProduct) {
-            htwo.innerText = selectedProduct.name;
-            img.src = selectedProduct.img;
+lupa.onclick = function () {
+    toggleWindowDisplay(poisk);
+};
 
-            if (sizes) sizes.innerText = `Розміри: `;
+closeSerch.onclick = function () {
+    toggleWindowDisplay(poisk);
+};
 
-            if (!selectedProduct.selectedSizes) {
-                selectedProduct.selectedSizes = [];
-            }
 
-            let sizesArray = selectedProduct.size;
-            if (sizesArray && sizesArray.length > 0) {
-                sizesArray.forEach(size => {
-                    let sizeInput = document.createElement("input");
-                    sizeInput.type = "checkbox";
-                    sizeInput.name = "selectedSizes";
-                    sizeInput.value = size;
-                    sizeInput.id = `sizeInput_${size}`;
 
-                    if (selectedSizes.includes(size)) {
-                        sizeInput.checked = true;
-                    }
+let urlParams = new URLSearchParams(window.location.search);
+let productImage = urlParams.get('img');
+let productName = urlParams.get('name');
+let productPrice = urlParams.get('price');
+let productSizes = urlParams.getAll('size');
+let productCup = urlParams.get('cup');
+let productColor = urlParams.getAll('color');
+let productBraShape = urlParams.get('braShape');
+let productMaterial = urlParams.getAll('material');
+let productStyle = urlParams.get('style');
+let productClasp = urlParams.get('clasp');
+let productCountry = urlParams.get('country');
+let productComposition = urlParams.getAll('composition');
+let productPrint = urlParams.get('print');
 
-                    let sizeLabel = document.createElement("label");
-                    sizeLabel.htmlFor = `sizeInput_${size}`;
 
-                    sizeLabel.appendChild(document.createTextNode(size));
-                    sizes.appendChild(sizeInput);
-                    sizes.appendChild(sizeLabel);
+let productInfo = document.querySelector("#productInfo");
+let productText = document.querySelector(".productText")
 
-                    sizeInput.addEventListener("change", function () {
-                        console.log("Изменение состояния чекбокса");
-                        if (this.checked) {
-                            selectedSizes.push(this.value);
-                        } else {
-                            const index = selectedSizes.indexOf(this.value);
-                            if (index !== -1) {
-                                selectedSizes.splice(index, 1);
-                            }
-                        }
-                    });
-                });
-            } else {
-                sizes.style.display = "none";
-            }
+let productImageElement = document.createElement("img");
+productImageElement.id = "productImage";
+productImageElement.src = productImage;
+productInfo.appendChild(productImageElement);
 
-            if (cup && selectedProduct.cup && selectedProduct.cup !== "None") cup.innerText = `Чашка: ${selectedProduct.cup}`;
-            if (material && selectedProduct.material && selectedProduct.material.length > 0) material.innerText = `Матеріал: ${selectedProduct.material.join(", ")}`;
-            if (color && selectedProduct.color && selectedProduct.color !== "none") color.innerText = `Колір: ${selectedProduct.color}`;
-            if (braShape && selectedProduct.braShape && selectedProduct.braShape !== "None") braShape.innerText = `Форма бюстгальтера: ${selectedProduct.braShape}`;
-            if (straps && selectedProduct.straps && selectedProduct.straps.length > 0) straps.innerText = `Бретелькі: ${selectedProduct.straps.join(", ")}`;
-            if (style && selectedProduct.style && selectedProduct.style !== "None") style.innerText = `Стиль: ${selectedProduct.style}`;
-            if (clasp && selectedProduct.clasp && selectedProduct.clasp !== "None") clasp.innerText = `Застібка: ${selectedProduct.clasp}`;
-            if (country && selectedProduct.country && selectedProduct.country !== "None") country.innerText = `Країна: ${selectedProduct.country}`;
-            if (composition && selectedProduct.composition && selectedProduct.composition.length > 0) composition.innerText = `Композиція: ${selectedProduct.composition.join(", ")}`;
-            if (print && selectedProduct.print && selectedProduct.print !== "none") print.innerText = `Малюнок: ${selectedProduct.print}`;
-            if (decoration && selectedProduct.decorating && selectedProduct.decorating !== "None") decoration.innerText = `Декорація: ${selectedProduct.decorating}`;
-            if (price && selectedProduct.price && selectedProduct.price !== "None") price.innerText = `Ціна: ${selectedProduct.price} грн.`;
-            if (rating && selectedProduct.rating && selectedProduct.rating !== "None") rating.innerText = `Рейтинг: ${selectedProduct.rating}`;
+let productNameElement = document.createElement("h2");
+productNameElement.id = "productName";
+productNameElement.textContent = productName;
+productText.appendChild(productNameElement);
+//
+let productSizesList = document.createElement("div");
+productSizesList.id = "productSizes";
+productText.appendChild(productSizesList);
 
-            if (!selectedProduct || !selectedProduct.name) {
-                const emptyBlock = document.querySelector(".emptyBlock");
-                emptyBlock.style.display = "block";
-                emptyBlock.style.visibility = "hidden";
-                sizes.style.position = "relative";
-                sizes.style.left = "100%";
-            }
-        } else {
-            htwo.innerText = "Товар не найден";
-        }
+let sizeString = productSizes.join(",");
+let sizeArr = sizeString.split(",");
 
-        let savedCartItemCount = parseInt(localStorage.getItem("cartItemCount")) || 0;
-        let cartItemCount = document.getElementById("cartItemCount");
-        cartItemCount.innerHTML = savedCartItemCount;
+let sizesHeader = document.createElement("p");
+sizesHeader.textContent = "Размеры:";
+productSizesList.appendChild(sizesHeader);
 
-        let push = document.getElementById("pushKarzina");
+let sizeCheckboxContainer = document.createElement("div");
+sizeCheckboxContainer.className = "SizesT";
+productSizesList.appendChild(sizeCheckboxContainer);
 
-        push.addEventListener("click", function () {
-            if (selectedProduct) {
-                updateSelectedSizes(selectedProduct, selectedSizes);
-                cartItems.push(selectedProduct);
-                let savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-                savedCartItems.push(selectedProduct);
-                localStorage.setItem("cartItems", JSON.stringify(savedCartItems));
-                let updatedCartItemCount = savedCartItems.length;
-                localStorage.setItem("cartItemCount", updatedCartItemCount);
-                cartItemCount.innerHTML = updatedCartItemCount;
-            } else {
-                console.log("Товар не найден");
-            }
-        });
-    }
+
+
+sizeArr.forEach((size) => {
+    let sizeCheckbox = document.createElement("input");
+    sizeCheckbox.type = "checkbox";
+    sizeCheckbox.name = "size";
+    sizeCheckbox.value = size;
+    sizeCheckbox.id = `size-${size}`;
+
+    let sizeLabel = document.createElement("label");
+    sizeLabel.textContent = size;
+    sizeLabel.setAttribute("for", `size-${size}`);
+
+    sizeCheckboxContainer.appendChild(sizeCheckbox);
+    sizeCheckboxContainer.appendChild(sizeLabel);
 });
 
-let cartWindow = document.getElementById("open_window");
-let cartItemList = document.getElementById("cartItems");
+sizeArr.forEach((size) => {
+    let sizeCheckbox = document.getElementById(`size-${size}`);
 
-document.getElementById("karzina").addEventListener("click", function () {
-    cartWindow.style.display = "block";
+    sizeCheckbox.addEventListener('change', (event) => {
+        let selectedCheckboxId = event.target.id;
 
-    let savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    cartItems = savedCartItems;
-
-    let savedCartItemCount = parseInt(localStorage.getItem("cartItemCount")) || 0;
-    let cartItemCount = document.getElementById("cartItemCount");
-    cartItemCount.innerHTML = savedCartItemCount;
-
-    cartItemList.innerHTML = "";
-    cartItems.forEach(item => {
-        let cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
-
-        let itemImage = document.createElement("img");
-        itemImage.src = item.img;
-        itemImage.alt = item.name;
-        cartItem.appendChild(itemImage);
-
-        let itemName = document.createElement("h3");
-        let itemSize = document.createElement("p");
-        itemName.innerText = `${item.name}`;
-        itemSize.innerText = `Розмір: ${item.selectedSizes.join(", ")}`
-        cartItem.appendChild(itemName);
-        cartItem.appendChild(itemSize);
-
-        let itemDescription = document.createElement("p");
-        cartItem.appendChild(itemDescription);
-
-        cartItemList.appendChild(cartItem);
-
-        let updatedCartItemCount = savedCartItems.length;
-        localStorage.setItem("cartItemCount", updatedCartItemCount);
-        cartItemCount.innerHTML = updatedCartItemCount;
-
-        localStorage.setItem("cartItems", JSON.stringify(savedCartItems));
+        let selectedSizes = [];
+        sizeArr.forEach((size) => {
+            let checkbox = document.getElementById(`size-${size}`);
+            if (checkbox.checked) {
+                selectedSizes.push(size);
+            }
+        });
     });
 });
 
-document.getElementById("closeWindow").addEventListener("click", function () {
-    cartWindow.style.display = "none";
+// Создайте элементы для цветов
+let productColorsList = document.createElement("div");
+productColorsList.id = "productColor";
+productText.appendChild(productColorsList);
+
+let colorsString = productColor.join(","); // Предположим, что у вас есть массив productColors
+let colorsArr = colorsString.split(",");
+
+let colorsHeader = document.createElement("p");
+colorsHeader.textContent = "Цвета:";
+productColorsList.appendChild(colorsHeader);
+
+let colorCheckboxContainer = document.createElement("div");
+colorCheckboxContainer.className = "ColorsT";
+productColorsList.appendChild(colorCheckboxContainer);
+
+// Создайте чекбоксы для каждого цвета
+colorsArr.forEach((color, index) => {
+    let colorCheckbox = document.createElement("input");
+    colorCheckbox.type = "checkbox";
+    colorCheckbox.name = "color";
+    colorCheckbox.value = color;
+    colorCheckbox.id = `color-${color}`;
+
+    let colorLabel = document.createElement("label");
+    colorLabel.textContent = color;
+    colorLabel.setAttribute("for", `color-${color}`);
+
+    colorCheckboxContainer.appendChild(colorCheckbox);
+    colorCheckboxContainer.appendChild(colorLabel);
 });
 
-document.getElementById("zakaz_tovara").addEventListener("click", function () {
-    console.log("Массив заказа:", cartItems);
-    let orderArrayElement = document.getElementById("orderArray");
-    orderArrayElement.innerHTML = "";
-    let preElement = document.createElement("pre");
-    preElement.textContent = JSON.stringify(cartItems, null, 2);
-    orderArrayElement.appendChild(preElement);
+colorsArr.forEach((color, index) => {
+    let colorCheckbox = document.getElementById(`color-${color}`);
+    let colorLabel = document.querySelector(`label[for="color-${color}"]`);
+
+    colorCheckbox.addEventListener('change', (event) => {
+        let selectedCheckboxId = event.target.id;
+        let selectedColors = [];
+        colorsArr.forEach((color) => {
+            let checkbox = document.getElementById(`color-${color}`);
+            if (checkbox.checked) {
+                selectedColors.push(color);
+            }
+        });
+        let cleanedColor = color.replace(/\s/g, '');
+
+        if (colorCheckbox.checked) {
+            colorLabel.classList.add(`color-${cleanedColor}`);
+        } else {
+            colorLabel.classList.remove(`color-${cleanedColor}`);
+        }
+    });
 });
 
+let productBraShapeElement = document.createElement("p");
+productBraShapeElement.id = "productBraShape";
+if (productBraShapeElement !== undefined) {
+    productBraShapeElement.style.display = "none"
+} else {
+    productBraShapeElement.textContent = `Форма бюстгальтера: ${productBraShape}`;
+    productText.appendChild(productBraShapeElement);
+}
 
-fetch('lang-ua.json') // Замените на выбор языка
-    .then(response => response.json())
-    .then(data => {
-        // Замена текста на странице
-        document.querySelector('.header_left li:nth-child(1) a').textContent = data.home;
-        document.querySelector('.header_left li:nth-child(2) a').textContent = data.shop;
-        // и так далее...
-    })
-    .catch(error => console.error('Ошибка при загрузке файла перевода:', error));
+let productMaterialElement = document.createElement("div");
+productMaterialElement.id = "productMaterials";
+productMaterial.forEach((material) => {
+    let materialElem = document.createElement("p");
+    materialElem.textContent = `Матеріал ${material}`;
+    productMaterialElement.appendChild(materialElem);
+});
+productText.appendChild(productMaterialElement);
+
+let productStyleElement = document.createElement("p");
+productStyleElement.id = "productStyle";
+productStyleElement.textContent = `Стиль: ${productStyle}`;
+productText.appendChild(productStyleElement);
+
+let productClaspElement = document.createElement("p");
+productClaspElement.id = "productClasp";
+
+if (productClasp !== undefined) {
+    productClaspElement.style.display = "none"
+} else {
+    productClaspElement.textContent = `Тип застежки: ${productClasp}`;
+    productText.appendChild(productClaspElement);
+}
+
+
+let productCountryElement = document.createElement("p");
+productCountryElement.id = "productCountry";
+productCountryElement.textContent = `Страна производителя: ${productCountry}`;
+productText.appendChild(productCountryElement);
+
+let productCompositionElement = document.createElement("div");
+productCompositionElement.id = "productComposition";
+productComposition.forEach((composition) => {
+    let compositionItem = document.createElement("p");
+    compositionItem.textContent = `Состав: ${composition}`;
+    productCompositionElement.appendChild(compositionItem);
+});
+productText.appendChild(productCompositionElement);
+
+let productPrintElement = document.createElement("p");
+productPrintElement.id = "productPrint";
+productPrintElement.textContent = `Принт: ${productPrint}`;
+productText.appendChild(productPrintElement);
+
+let productPriceElement = document.createElement("p");
+productPriceElement.id = "productPrice";
+productPriceElement.textContent = `Цена: ${productPrice} грн.`;
+productText.appendChild(productPriceElement);
+
+productInfo.appendChild(productText);
+productText.appendChild(pushKarzina)
+
+let selectedSizes = [];
+let selectedColors = [];
+
+let totalAmount = parseFloat(localStorage.getItem("totalAmount")) || 0;
+
+let cartItemCount = parseInt(localStorage.getItem("cartItemCount")) || 0;
+let cartItemCountElement = document.getElementById("cartItemCount");
+cartItemCountElement.textContent = cartItemCount.toString();
+
+pushKarzina.onclick = function () {
+    let items = document.createElement("li");
+    items.classList = 'imemsP';
+
+    let itemsImg = document.createElement("img");
+    itemsImg.src = productImage;
+    items.appendChild(itemsImg);
+
+    let itemsName = document.createElement("h3");
+    itemsName.textContent = productName;
+    items.appendChild(itemsName);
+
+    let selectedSizes = [];
+    sizeArr.forEach((size) => {
+        let checkbox = document.getElementById(`size-${size}`);
+        if (checkbox.checked) {
+            selectedSizes.push(size);
+        }
+    });
+
+    let selectedColors = [];
+    colorsArr.forEach((color) => {
+        let checkbox = document.getElementById(`color-${color}`);
+        if (checkbox.checked) {
+            selectedColors.push(color);
+        }
+    });
+    let itemsSize = document.createElement("p");
+    itemsSize.textContent = `Размеры: ${selectedSizes.join(', ')}`;
+    items.appendChild(itemsSize);
+
+    let itemsColor = document.createElement("p");
+    itemsColor.textContent = `Цвета: ${selectedColors.join(', ')}`;
+    items.appendChild(itemsColor);
+
+    let itemsPrice = document.createElement("p");
+    itemsPrice.className = "itemsPrice";
+    itemsPrice.textContent = `Цена: ${productPrice} грн.`;
+    items.appendChild(itemsPrice);
+
+    let count = 1;
+    let itemsBox = document.createElement("div");
+    itemsBox.className = "itemsBox";
+    let countBox = document.createElement("div");
+    countBox.className = "countBox";
+
+    let increment = document.createElement("button");
+    increment.id = "increment";
+    increment.className = "counter-button";
+    increment.innerText = "+";
+
+    let decrement = document.createElement("button");
+    decrement.id = "decrement";
+    decrement.className = "counter-button";
+    decrement.innerText = "-";
+
+    let countElement = document.createElement("div");
+    countElement.innerText = "1";
+    countElement.id = "count";
+
+    increment.addEventListener('click', () => {
+        count++;
+        countElement.textContent = count;
+        totalAmount += parseFloat(productPrice);
+        updateTotalAmount();
+    });
+
+    decrement.addEventListener('click', () => {
+        if (count > 0) {
+            count--;
+            countElement.textContent = count;
+            totalAmount -= parseFloat(productPrice);
+            updateTotalAmount();
+        }
+    });
+
+    let cartItem = {
+        image: productImage,
+        name: productName,
+        sizes: selectedSizes,
+        colors: selectedColors,
+        price: productPrice,
+        quantity: count,
+    };
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push(cartItem);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    cartItemCount++;
+    cartItemCountElement.textContent = cartItemCount;
+    localStorage.setItem("cartItemCount", cartItemCount.toString());
+
+    countBox.appendChild(increment);
+    countBox.appendChild(countElement);
+    countBox.appendChild(decrement);
+
+    let deleteButton = document.createElement("button");
+    deleteButton.className = "deleteButton";
+    deleteButton.addEventListener("click", () => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const index = cart.findIndex((item) => {
+            return (
+                item.image === productImage &&
+                item.name === productName &&
+                arraysEqual(item.sizes, selectedSizes) &&
+                arraysEqual(item.colors, selectedColors)
+            );
+        });
+
+        if (index !== -1) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            cartItems.removeChild(itemsBox);
+            cartItemCount--;
+            cartItemCountElement.textContent = cartItemCount;
+            localStorage.setItem("cartItemCount", cartItemCount.toString());
+            totalAmount -= count * parseFloat(productPrice);
+            updateTotalAmount();
+        }
+    });
+    countBox.appendChild(deleteButton);
+    cartItems.appendChild(itemsBox);
+    itemsBox.appendChild(items);
+    itemsBox.appendChild(countBox);
+    totalAmount += parseFloat(productPrice);
+    updateTotalAmount();
+};
+
+function updateTotalAmount() {
+    let totalAmountElement = document.getElementById("totalAmount");
+    totalAmountElement.textContent = `Общая сумма: ${totalAmount.toFixed(2)} грн.`;
+    localStorage.setItem("totalAmount", totalAmount.toString());
+
+}
+totalAmount = parseFloat(localStorage.getItem("totalAmount")) || 0;
+
+function getCartData() {
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    return cartData;
+}
+
+function arraysEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) return false;
+    }
+    return true;
+}
+
+export { getCartData };
+

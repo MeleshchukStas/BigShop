@@ -1,70 +1,156 @@
 <!DOCTYPE html>
 <html lang="ua">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JORMI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <header>
-        <div class="header_meni_left">
-            <h2 class="text_logo">JORMI</h2>
-            <ul class="ListOfClothes">
-                <li><a href="index.html">Головна</a></li>
-                <li><a href="shop.html">Магазин</a></li>
-                <li><a href="#">Контакти</a></li>
-                <li><a href="#">Коментарі</a></li>
-            </ul>
+        <div class="preloader">
+            <div class="preloader_image"></div>
         </div>
-        <div class="header_meni_right">
-            <input type="search" id="poisk">
-            <button type="button" id="lupa"></button>
-            <div id="karzina"><span id="cartItemCount">0</span></div>
-        </div>
-        <div id="open_window">
-            <div class="txt">
-                <h2>Кошик</h2>
-                <button id="closeWindow" type="button"></button>
-            </div>
-            <ul id="cartItems"></ul>
-            <a id="zakaz_tovara" href="poshta/poshta.html">Оформить заказ</a>
-        </div>
-    </header>
-
-    <div id="productInfo">
         <div>
-            <h2 class="nameT"></h2>
-            <img class="imgT" src="" alt="">
+            <div class="header_left">
+                <div class="header_meni_left">
+                    <a href="./index.html">
+                        <h2 class="text_logo">Angelika</h2>
+                    </a>
+                    <ul class="ListOfClothes">
+                        <li><a href="index.html" class="lng-homeq">Головна</a></li>
+                        <li class="activeLink"><a href="shop.html" class="lng-shopq">Магазин</a></li>
+                        <li><a href="#" class="lng-contactsq">Контакти</a></li>
+                        <li><a href="#" class="lng-commentsq">Коментарі</a></li>
+                    </ul>
+
+                    <select class="change-lang">
+                        <option value="ua">UA</option>
+                        <option value="en">EN</option>
+                    </select>
+                    <div class="header_meni_right">
+                        <div id="poisk">
+                            <button id="closeSerch" type="button"><img width="30" height="30"
+                                    src="https://img.icons8.com/ios/50/1A1A1A/cancel.png" alt="cancel" /></button>
+                            <input type="search">
+                        </div>
+                        <button type="button" id="lupa"></button>
+                        <div id="karzina"><img width="35" height="35"
+                                src="https://img.icons8.com/pastel-glyph/64/1A1A1A/shopping-cart--v1.png"
+                                alt="shopping-cart--v1" /><span id="cartItemCount">0</span><span
+                                id="totalOrderAmount"></span></div>
+                    </div>
+                    <div class="mobile-menu-button">
+                        <div id="burgerMenu">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <ul class="mobileMeni">
+                            <button id="closeButton" type="button">X</button>
+                            <li><a href="index.html" class="lng-home">Головна</a></li>
+                            <li class="activeLink"><a href="shop.html" class="lng-shop">Магазин</a></li>
+                            <li><a href="#" class="lng-contacts">Контакти</a></li>
+                            <li><a href="#" class="lng-comments">Коментарі</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <div id="open_window">
+        <div class="txt">
+            <h2>Кошик</h2>
+            <button id="closeWindow" type="button"><img width="50" height="50"
+                    src="https://img.icons8.com/ios/50/1A1A1A/cancel.png" alt="cancel" /></button>
         </div>
-        <div class="productText">
-            <p class="SizesT"></p>
-            <p class="cupT"></p>
-            <p class="materialT"></p>
-            <p class="ColorT"></p>
-            <p class="brashapeT"></p>
-            <p class="strapsT"></p>
-            <p class="styleT"></p>
-            <p class="claspT"></p>
-            <p class="countryT"></p>
-            <p class="compositionT"></p>
-            <p class="printT"></p>
-            <p class="decorationT"></p>
-            <p class="RatingT"></p>
-            <p class="PriceT"></p>
-            <button id="pushKarzina"><img src="img/carzinalitle.png" alt="karzina"><p>Добавити у кошик</p></button>
-        </div>
+        <ul id="cartItems"></ul>
+        <p id="totalAmount"></p>
+        <a id="zakaz_tovara" href="poshta/poshta.html">оформити заказ</a>
     </div>
-    <script type="module" src="tovar.js"></script>
-    
-    <script type="module" src="style.js"></script>
-    <script type="module" src="style2.js"></script>
-    
+    <h1>Информация о товаре</h1>
+    <div id="productInfo">
+    </div>
+    <div class="productText ">
+        <button id="pushKarzina" type="button" data-product-id="1">
+            <img src="img/carzinalitle.png" alt="">
+            <p>Добавить в корзину</p>
+        </button>
+    </div>
+    <footer class="footer" id="contacts">
+        <div class="container">
+            <h1>Наші контакті</h1>
+            <div class="footer_boxs">
+                <div class="footer_box1">
+                    <h3 class="lng-footer_box1_h3">Наші соц сторінки</h3>
+                    <ul>
+
+                        <a href=""><img width="40" height="40"
+                                src="https://img.icons8.com/ios-glyphs/60/FFFFFF/instagram-circle.png"
+                                alt="instagram-circle" /></a>
+                        <a href=""><img width="40" height="40"
+                                src="https://img.icons8.com/glyph-neue/64/FFFFFF/facebook-new.png"
+                                alt="facebook-new" /></a>
+
+                    </ul>
+                </div>
+                <div class="adres">
+                    <ul>
+                        <img width="40" height="40" src="https://img.icons8.com/ios/50/FFFFFF/marker--v1.png"
+                            alt="marker--v1" />
+                        <h3 class="adress_opus">Ми зноходемось</h3>
+                        <li class="lng-footer_box2_ul_li1">г. Покровськ</li>
+                        <li class="lng-footer_box2_ul_li1">вул. Тургенєва, 6</li>
+                        <li class="lng-footer_box2_ul_li1">Центральний ринок</li>
+                        <li><a href="">Мапа</a></li>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d409.28953805849886!2d37.17214489727224!3d48.27569405317803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sru!2sua!4v1695414907596!5m2!1sru!2sua"
+                            width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    </ul>
+                </div>
+                <div class="time">
+                    <ul>
+                        <img width="40" height="40" src="https://img.icons8.com/ios/50/FFFFFF/clock--v3.png"
+                            alt="clock--v3" />
+                        <li>З вівторка до неділі</li>
+                        <li>Працюэмо з 8:00 до 14:00</li>
+                    </ul>
+                </div>
+                <div class="footer_box2">
+                    <ul>
+                        <img width="40" height="40" src="https://img.icons8.com/ios/50/FFFFFF/phone--v1.png"
+                            alt="phone--v1" />
+                        <h3 style="color: #fff;">Подзвоніть нам</h3>
+                        <li><a class="lng-footer_box2_ul_li2" href="tel: +380961111111">тел. +380961111111</a></li>
+                        <li><a class="lng-footer_box2_ul_li3" href="tel: +380672222222">тел. +380672222222</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- <script src="./lang/lang.js"></script>
+    <script src="./lang/multiLang.js"></script> -->
+    <script type="module" src="./shop.js"></script>
+    <script type="module" src="./style2.js"></script>
+    <script type="module" src="./style.js"></script>
+    <script type="module" src="./karzina.js"></script>
+    <script>window.setTimeout(function () {
+            document.body.classList.add("loaded")
+        }, 1000)
+    </script>
 </body>
 
 </html>
